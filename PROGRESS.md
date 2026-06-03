@@ -1,22 +1,23 @@
 # PROGRESS
 
-Phase: 2
+Phase: 3
 Status: done
-Last: about・affiliate-disclosure・privacy-policy・terms-of-use 全4ページ
-Next: Phase 3開始（旅行ガイド記事5本 · 食べ物図鑑 · マナーリスト）
-Blockers: about/index.html の [YOUR_CONTACT_EMAIL] を実際のアドレスに差し替えること（藤丸が手動で）
+Last: 記事6本+一覧ページ+記事CSS完成
+Next: Phase 4開始（JRパス試算ツール・両替計算機・緊急連絡先ページ）
+Blockers: -
 Updated: 2026-06-03
 
-## Phase 2 チェックリスト
-- [x] about/index.html（屋号「虹丸」+ 看護師の肩書きのみ。実名・顔・勤務先なし）
-- [x] affiliate-disclosure/index.html（FTC法的義務・JRパス/Airalo/Booking/Klook明記）
-- [x] privacy-policy/index.html（GDPR/CCPA対応・localStorage/GoogleFonts/Maps/GitHub/アフィリ開示）
-- [x] terms-of-use/index.html（旅行情報免責・Google Maps店舗免責・アフィリ・準拠法：日本）
+## Phase 3 チェックリスト
+- [x] articles/index.html（記事一覧ページ）
+- [x] articles/how-to-call-waiter/index.html（v2・食券機・Xジェスチャー）
+- [x] articles/konbini/index.html（おすすめ品・ATM・スキップ品）
+- [x] articles/train/index.html（ICカードvsJRパス・損益分岐点）
+- [x] articles/toilet/index.html（全ボタン解説・水音ボタン警告）
+- [x] articles/manners/index.html（本当に重要な9ルール）
+- [x] articles/food-guide/index.html（食べ物図鑑20品・注文フレーズ・価格）
+- [x] css/style.css 記事スタイル追加（affiliate-notice・callout・phrase-preview・affiliate-cta）
 
-## Phase 3 チェックリスト（次回）
-- [ ] articles/how-to-call-waiter/index.html（v2・食券機・Xジェスチャー）
-- [ ] articles/konbini/index.html
-- [ ] articles/train/index.html
-- [ ] articles/toilet/index.html
-- [ ] articles/manners/index.html
-- [ ] articles/food-guide/index.html（食べ物図鑑20品）
+## Phase 4 チェックリスト（次回）
+- [ ] tools/jr-pass-calculator/index.html（都市選択+日数→最適パス+節約額+CTA）
+- [ ] tools/exchange-rate/index.html（為替計算機・取得時刻明示・穴⑥対応）
+- [ ] tools/emergency-contacts/index.html（公的リンクのみ・直書き禁止・穴⑤対応）
