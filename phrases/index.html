@@ -339,6 +339,27 @@
 
     </div><!-- /phrases-grid -->
 
+    <!-- Favourites trigger (shows when ≥1 saved) -->
+    <button class="favs-trigger" id="favs-trigger" hidden aria-haspopup="dialog">
+      ♥ Saved <span class="favs-trigger__count" aria-live="polite">0</span>
+    </button>
+
+    <!-- Favourites drawer -->
+    <div class="favs-panel" id="favs-panel" hidden role="dialog" aria-modal="true" aria-label="Saved phrases">
+      <div class="favs-panel__scrim" aria-hidden="true"></div>
+      <div class="favs-panel__drawer">
+        <div class="favs-panel__header">
+          <h2>Saved Phrases</h2>
+          <button class="favs-panel__close" aria-label="Close saved phrases">✕</button>
+        </div>
+        <p class="favs-panel__empty">No phrases saved yet. Tap ♥ on any phrase to save it.</p>
+        <div class="favs-panel__list" role="list"></div>
+        <div class="favs-panel__footer">
+          <button class="favs-clear-btn">Clear all saved phrases</button>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <footer class="site-footer" aria-label="Site footer">

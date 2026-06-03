@@ -68,16 +68,23 @@ document.addEventListener('click', e => {
 });
 
 /* ---- Web Speech API (voice) ---- */
+if (!window.speechSynthesis) {
+  document.documentElement.classList.add('no-speech');
+}
+
 document.addEventListener('click', e => {
   const btn = e.target.closest('.btn-speak');
   if (!btn) return;
-
   if (!window.speechSynthesis) return;
 
-  const text = btn.dataset.speak;
+  window.speechSynthesis.cancel();
+  const text  = btn.dataset.speak;
   const utter = new SpeechSynthesisUtterance(text);
-  utter.lang = 'ja-JP';
-  utter.rate = 0.85;
+  utter.lang  = 'ja-JP';
+  utter.rate  = 0.85;
+
+  btn.classList.add('is-speaking');
+  utter.onend = utter.onerror = () => btn.classList.remove('is-speaking');
   window.speechSynthesis.speak(utter);
 });
 
@@ -117,6 +124,114 @@ document.addEventListener('click', e => {
 });
 
 applyFavState();
+
+/* ---- Favourites panel ---- */
+const favTrigger = document.getElementById('favs-trigger');
+const favPanel   = document.getElementById('favs-panel');
+
+function buildFavPanel() {
+  if (!favPanel) return;
+  const favs    = getFavs();
+  const list    = favPanel.querySelector('.favs-panel__list');
+  const empty   = favPanel.querySelector('.favs-panel__empty');
+  const counter = document.querySelectorAll('.favs-trigger__count');
+
+  counter.forEach(el => { el.textContent = favs.length; });
+  if (favTrigger) favTrigger.hidden = favs.length === 0;
+
+  if (!list) return;
+  list.innerHTML = '';
+
+  if (favs.length === 0) {
+    if (empty) empty.hidden = false;
+    return;
+  }
+  if (empty) empty.hidden = true;
+
+  favs.forEach(id => {
+    const card = document.querySelector(`.phrase-card[data-id="${id}"]`);
+    if (!card) return;
+    const jp  = card.querySelector('.phrase-card__japanese')?.textContent ?? '';
+    const en  = card.querySelector('.phrase-card__english')?.textContent ?? '';
+    const spk = card.querySelector('.btn-speak')?.dataset.speak ?? jp;
+
+    const item = document.createElement('div');
+    item.className = 'fav-item';
+
+    const jpDiv = document.createElement('div');
+    jpDiv.className = 'fav-item__jp';
+    jpDiv.setAttribute('translate', 'no');
+    jpDiv.setAttribute('lang', 'ja');
+    jpDiv.textContent = jp;
+    const enSpan = document.createElement('span');
+    enSpan.className = 'fav-item__en';
+    enSpan.textContent = en;
+    jpDiv.appendChild(enSpan);
+
+    const acts = document.createElement('div');
+    acts.className = 'fav-item__actions';
+
+    if (window.speechSynthesis) {
+      const spkBtn = document.createElement('button');
+      spkBtn.className = 'fav-item__btn';
+      spkBtn.setAttribute('aria-label', 'Hear');
+      spkBtn.dataset.speak = spk;
+      spkBtn.textContent = '🔊';
+      acts.appendChild(spkBtn);
+    }
+
+    const rmBtn = document.createElement('button');
+    rmBtn.className = 'fav-item__btn fav-item__btn--remove';
+    rmBtn.setAttribute('aria-label', 'Remove');
+    rmBtn.dataset.remove = id;
+    rmBtn.textContent = '✕';
+    acts.appendChild(rmBtn);
+
+    item.appendChild(jpDiv);
+    item.appendChild(acts);
+    list.appendChild(item);
+  });
+}
+
+if (favTrigger) {
+  favTrigger.addEventListener('click', () => {
+    buildFavPanel();
+    if (favPanel) favPanel.hidden = false;
+  });
+}
+
+if (favPanel) {
+  favPanel.addEventListener('click', e => {
+    if (e.target.closest('.favs-panel__scrim') || e.target.closest('.favs-panel__close')) {
+      favPanel.hidden = true;
+      return;
+    }
+    const spkBtn = e.target.closest('[data-speak]');
+    if (spkBtn && window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(spkBtn.dataset.speak);
+      utter.lang = 'ja-JP'; utter.rate = 0.85;
+      window.speechSynthesis.speak(utter);
+      return;
+    }
+    const rmBtn = e.target.closest('[data-remove]');
+    if (rmBtn) {
+      const id   = rmBtn.dataset.remove;
+      saveFavs(getFavs().filter(f => f !== id));
+      applyFavState();
+      buildFavPanel();
+      return;
+    }
+    if (e.target.closest('.favs-clear-btn')) {
+      saveFavs([]);
+      applyFavState();
+      buildFavPanel();
+      favPanel.hidden = true;
+    }
+  });
+}
+
+buildFavPanel();
 
 /* ---- Dark mode toggle ---- */
 const THEME_KEY = 'sumimasen_theme';

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Japan Trip Itinerary Planner — Sumimasen</title>
+  <meta name="description" content="Build your Japan itinerary and print it as a PDF. Add cities, dates, and notes — no account needed.">
+  <meta name="theme-color" content="#2A7C6F">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <!-- GA4: replace G-XXXXXXXXXX with your Measurement ID when ready -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script> -->
+  <style>
+    /* Itinerary-specific styles */
+    .itin-form { display: flex; flex-direction: column; gap: var(--s-4); }
+
+    .itin-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s-3);
+    }
+    @media (max-width: 480px) { .itin-meta { grid-template-columns: 1fr; } }
+
+    .form-field { display: flex; flex-direction: column; gap: var(--s-1); }
+    .form-field label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+    }
+    .form-field input, .form-field textarea, .form-field select {
+      padding: var(--s-3);
+      border: 1.5px solid var(--c-border);
+      border-radius: var(--r-m);
+      background: var(--c-white);
+      color: var(--c-ink);
+      font-size: .9375rem;
+      transition: border-color var(--ease);
+      width: 100%;
+    }
+    .form-field input:focus,
+    .form-field textarea:focus,
+    .form-field select:focus { outline: none; border-color: var(--c-teal); }
+    .form-field textarea { resize: vertical; min-height: 80px; }
+
+    /* Day cards */
+    .days-list { display: flex; flex-direction: column; gap: var(--s-3); }
+    .day-card {
+      background: var(--c-white);
+      border: 1px solid var(--c-border);
+      border-radius: var(--r-l);
+      overflow: hidden;
+    }
+    .day-card__header {
+      display: flex;
+      align-items: center;
+      gap: var(--s-3);
+      padding: var(--s-3) var(--s-4);
+      background: var(--c-teal-light);
+      border-bottom: 1px solid var(--c-border);
+    }
+    .day-card__num {
+      font-family: var(--f-heading);
+      font-size: 1rem;
+      color: var(--c-teal-dark);
+      font-weight: 700;
+      flex-shrink: 0;
+      min-width: 4rem;
+    }
+    .day-card__date-input {
+      border: none !important;
+      background: transparent !important;
+      font-size: .875rem;
+      color: var(--c-teal-dark);
+      flex: 1;
+      padding: 0 !important;
+      min-width: 0;
+    }
+    .day-card__date-input:focus { outline: 2px solid var(--c-teal); border-radius: 4px; }
+    .day-card__remove {
+      width: 1.75rem; height: 1.75rem;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: var(--r-s);
+      color: var(--c-muted);
+      font-size: .875rem;
+      transition: all var(--ease);
+      flex-shrink: 0;
+    }
+    .day-card__remove:hover { background: #fdf1f0; color: var(--c-red); }
+    .day-card__body { padding: var(--s-3) var(--s-4); display: flex; flex-direction: column; gap: var(--s-2); }
+
+    /* Action bar */
+    .itin-actions {
+      display: flex;
+      gap: var(--s-3);
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .btn-add-day {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-2);
+      padding: var(--s-2) var(--s-4);
+      border: 1.5px dashed var(--c-teal);
+      border-radius: var(--r-m);
+      color: var(--c-teal);
+      font-size: .875rem;
+      font-weight: 600;
+      transition: all var(--ease);
+      min-height: 44px;
+    }
+    .btn-add-day:hover { background: var(--c-teal-light); }
+
+    .btn-print {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-2);
+      padding: var(--s-2) var(--s-5);
+      background: var(--c-teal);
+      color: var(--c-white);
+      border-radius: var(--r-m);
+      font-size: .875rem;
+      font-weight: 700;
+      transition: all var(--ease);
+      min-height: 44px;
+    }
+    .btn-print:hover { background: var(--c-teal-dark); transform: translateY(-1px); box-shadow: var(--sh-m); }
+
+    .btn-clear-itin {
+      font-size: .8125rem;
+      color: var(--c-muted);
+      text-decoration: underline;
+      transition: color var(--ease);
+    }
+    .btn-clear-itin:hover { color: var(--c-red); }
+
+    /* Print layout */
+    @media print {
+      .itin-actions, .day-card__remove, .btn-add-day,
+      .day-card__date-input[type="date"] { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .day-card { break-inside: avoid; }
+      .day-card__header { background: #EBF5F3 !important; }
+      body { font-size: 11pt; }
+      .tool-page { padding: 0; }
+      h1 { font-size: 18pt; }
+      .itin-print-header { display: block !important; }
+    }
+
+    .itin-print-header {
+      display: none;
+      margin-bottom: 1rem;
+      font-size: 10pt;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header>
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="site-nav__inner">
+        <a href="/" class="site-nav__logo" translate="no">Sumimasen</a>
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="site-nav__links" id="nav-links" role="list">
+          <li><a href="/phrases/">Phrases</a></li>
+          <li><a href="/articles/">Articles</a></li>
+          <li><a href="/areas/">Areas</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/phrases/" class="nav-cta">Open Phrases →</a></li>
+        </ul>
+        <button class="theme-toggle" aria-label="Switch to dark mode"><svg class="icon-moon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="tool-page">
+      <p class="eyebrow">Tools</p>
+      <h1>Japan Trip Itinerary</h1>
+      <p class="tool-description">Plan your trip day by day. When you're done, hit <strong>Print as PDF</strong> — no account, no ads, no email required.</p>
+
+      <div class="itin-print-header" aria-hidden="true">
+        Printed from Sumimasen — sumimasen.guide
+      </div>
+
+      <form class="itin-form" id="itin-form" novalidate>
+
+        <!-- Trip meta -->
+        <div class="itin-meta">
+          <div class="form-field">
+            <label for="itin-name">Trip name</label>
+            <input type="text" id="itin-name" placeholder="e.g. Japan 2026" maxlength="80" autocomplete="off">
+          </div>
+          <div class="form-field">
+            <label for="itin-travelers">Travelers</label>
+            <input type="text" id="itin-travelers" placeholder="e.g. Sarah &amp; Mike" maxlength="60" autocomplete="off">
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="itin-notes">Trip notes (budget, flights, hotel confirmations…)</label>
+          <textarea id="itin-notes" rows="3" placeholder="Arrival: JAL 006 · Hotel: Shinjuku Washington · Budget: ¥200,000" maxlength="600"></textarea>
+        </div>
+
+        <!-- Day cards -->
+        <div class="days-list" id="days-list" aria-label="Itinerary days"></div>
+
+        <!-- Actions -->
+        <div class="itin-actions">
+          <button type="button" class="btn-add-day" id="btn-add-day" aria-label="Add a day to itinerary">
+            + Add Day
+          </button>
+          <button type="button" class="btn-print" id="btn-print">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Print as PDF
+          </button>
+          <button type="button" class="btn-clear-itin" id="btn-clear-itin">Clear all</button>
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="site-footer__inner">
+      <div class="footer-brand">
+        <a href="/" class="site-nav__logo" translate="no">Sumimasen</a>
+        <p>The Japan guide that tells you what guidebooks are too scared to say.</p>
+      </div>
+      <nav class="footer-cols" aria-label="Footer navigation">
+        <div class="footer-col">
+          <h3>Tools</h3>
+          <ul role="list">
+            <li><a href="/tools/jr-pass-calculator/">JR Pass Calculator</a></li>
+            <li><a href="/tools/exchange-rate/">Exchange Rate</a></li>
+            <li><a href="/tools/emergency-contacts/">Emergency Contacts</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Info</h3>
+          <ul role="list">
+            <li><a href="/about/">About</a></li>
+            <li><a href="/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="/terms-of-use/">Terms of Use</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 <span translate="no">Sumimasen</span>. Operated by Nijimaru (虹丸).</span>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+  <script>
+    /* Itinerary planner — localStorage-backed, no server */
+    const ITIN_KEY = 'sumimasen_itin';
+    let dayCount = 0;
+
+    function loadItin() {
+      try { return JSON.parse(localStorage.getItem(ITIN_KEY)) || {}; }
+      catch { return {}; }
+    }
+
+    function saveItin() {
+      const data = { name: '', travelers: '', notes: '', days: [] };
+      data.name      = document.getElementById('itin-name').value;
+      data.travelers = document.getElementById('itin-travelers').value;
+      data.notes     = document.getElementById('itin-notes').value;
+      document.querySelectorAll('.day-card').forEach(card => {
+        data.days.push({
+          date:      card.querySelector('.day-card__date-input').value,
+          city:      card.querySelector('.day-city').value,
+          plan:      card.querySelector('.day-plan').value,
+          transport: card.querySelector('.day-transport').value,
+        });
+      });
+      localStorage.setItem(ITIN_KEY, JSON.stringify(data));
+    }
+
+    function makeDayCard(data = {}) {
+      dayCount++;
+      const n = dayCount;
+
+      const card = document.createElement('article');
+      card.className = 'day-card';
+      card.setAttribute('aria-label', 'Day ' + n);
+
+      /* Header */
+      const hdr = document.createElement('div');
+      hdr.className = 'day-card__header';
+
+      const num = document.createElement('span');
+      num.className = 'day-card__num';
+      num.textContent = 'Day ' + n;
+
+      const dateInput = document.createElement('input');
+      dateInput.type = 'date';
+      dateInput.className = 'day-card__date-input form-field input';
+      dateInput.setAttribute('aria-label', 'Date for Day ' + n);
+      dateInput.value = data.date || '';
+
+      const rmBtn = document.createElement('button');
+      rmBtn.type = 'button';
+      rmBtn.className = 'day-card__remove';
+      rmBtn.setAttribute('aria-label', 'Remove Day ' + n);
+      rmBtn.textContent = '✕';
+      rmBtn.addEventListener('click', () => {
+        card.remove();
+        saveItin();
+        renumberDays();
+      });
+
+      hdr.appendChild(num);
+      hdr.appendChild(dateInput);
+      hdr.appendChild(rmBtn);
+
+      /* Body */
+      const body = document.createElement('div');
+      body.className = 'day-card__body';
+
+      function field(labelText, inputClass, placeholder, isTextarea, val) {
+        const wrap = document.createElement('div');
+        wrap.className = 'form-field';
+        const lbl = document.createElement('label');
+        lbl.textContent = labelText;
+        const inp = document.createElement(isTextarea ? 'textarea' : 'input');
+        if (!isTextarea) inp.type = 'text';
+        inp.className = inputClass;
+        inp.placeholder = placeholder;
+        inp.value = val || '';
+        if (isTextarea) { inp.rows = 3; inp.style.minHeight = '60px'; }
+        inp.maxLength = isTextarea ? 400 : 80;
+        wrap.appendChild(lbl);
+        wrap.appendChild(inp);
+        return wrap;
+      }
+
+      body.appendChild(field('City / Area', 'day-city', 'e.g. Kyoto', false, data.city));
+      body.appendChild(field('Plan & Activities', 'day-plan', 'Fushimi Inari in the morning · Nishiki Market · Gion at night', true, data.plan));
+      body.appendChild(field('Transport & Logistics', 'day-transport', 'Shinkansen from Tokyo · IC card · 15-min walk from station', false, data.transport));
+
+      card.appendChild(hdr);
+      card.appendChild(body);
+
+      /* Auto-save on any input */
+      card.addEventListener('input', saveItin);
+
+      return card;
+    }
+
+    function renumberDays() {
+      document.querySelectorAll('.day-card').forEach((card, i) => {
+        const n = i + 1;
+        card.setAttribute('aria-label', 'Day ' + n);
+        const num = card.querySelector('.day-card__num');
+        if (num) num.textContent = 'Day ' + n;
+        const rm = card.querySelector('.day-card__remove');
+        if (rm) rm.setAttribute('aria-label', 'Remove Day ' + n);
+        const dt = card.querySelector('.day-card__date-input');
+        if (dt) dt.setAttribute('aria-label', 'Date for Day ' + n);
+      });
+      dayCount = document.querySelectorAll('.day-card').length;
+    }
+
+    /* Init */
+    const saved = loadItin();
+    if (saved.name)      document.getElementById('itin-name').value      = saved.name;
+    if (saved.travelers) document.getElementById('itin-travelers').value = saved.travelers;
+    if (saved.notes)     document.getElementById('itin-notes').value     = saved.notes;
+
+    const list = document.getElementById('days-list');
+
+    if (saved.days && saved.days.length) {
+      saved.days.forEach(d => list.appendChild(makeDayCard(d)));
+    } else {
+      list.appendChild(makeDayCard());
+    }
+
+    document.getElementById('itin-form').addEventListener('input', saveItin);
+
+    document.getElementById('btn-add-day').addEventListener('click', () => {
+      list.appendChild(makeDayCard());
+      list.lastElementChild.querySelector('.day-city').focus();
+      saveItin();
+    });
+
+    document.getElementById('btn-print').addEventListener('click', () => {
+      saveItin();
+      window.print();
+    });
+
+    document.getElementById('btn-clear-itin').addEventListener('click', () => {
+      if (!confirm('Clear all itinerary data?')) return;
+      localStorage.removeItem(ITIN_KEY);
+      list.innerHTML = '';
+      dayCount = 0;
+      document.getElementById('itin-name').value = '';
+      document.getElementById('itin-travelers').value = '';
+      document.getElementById('itin-notes').value = '';
+      list.appendChild(makeDayCard());
+    });
+  </script>
+</body>
+</html>
