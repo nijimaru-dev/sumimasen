@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Sumimasen — Written by a Nurse in Japan</title>
+  <meta name="description" content="Sumimasen is written by a working nurse living in Japan. Real advice from someone who lives it daily — not a travel agency.">
+  <meta name="theme-color" content="#2A7C6F">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .about-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: var(--s-5) var(--s-4);
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: var(--s-6);
+      align-items: start;
+    }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+    .about-body h2 {
+      font-family: var(--f-heading);
+      font-size: 1.375rem;
+      margin: var(--s-5) 0 var(--s-3);
+      color: var(--c-ink);
+    }
+    .about-body p {
+      color: var(--c-muted);
+      font-size: .9375rem;
+      margin-bottom: var(--s-3);
+      max-width: var(--measure);
+    }
+    .about-body ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-2);
+      margin-bottom: var(--s-3);
+    }
+    .about-body li {
+      font-size: .9375rem;
+      color: var(--c-muted);
+      padding-left: var(--s-3);
+      position: relative;
+    }
+    .about-body li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--c-teal);
+      font-weight: 700;
+    }
+    .about-sidebar {
+      position: sticky;
+      top: calc(var(--nav-h) + var(--s-4));
+    }
+    .about-card {
+      background: var(--c-teal-light);
+      border-radius: var(--r-l);
+      padding: var(--s-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-3);
+    }
+    .about-card__role {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--c-teal-dark);
+    }
+    .about-card__name {
+      font-family: var(--f-heading);
+      font-size: 1.375rem;
+    }
+    .about-card p {
+      font-size: .875rem;
+      color: var(--c-muted);
+    }
+    .about-card__divider {
+      border: none;
+      border-top: 1px solid var(--c-border);
+      margin: 0;
+    }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-2);
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--c-teal-dark);
+      transition: color var(--ease);
+    }
+    .contact-link:hover { color: var(--c-teal); }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header>
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="site-nav__inner">
+        <a href="/" class="site-nav__logo" translate="no">Sumimasen</a>
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="site-nav__links" id="nav-links" role="list">
+          <li><a href="/phrases/">Phrases</a></li>
+          <li><a href="/articles/">Articles</a></li>
+          <li><a href="/areas/">Areas</a></li>
+          <li><a href="/about/" aria-current="page">About</a></li>
+          <li><a href="/phrases/" class="nav-cta">Open Phrases →</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <div class="page-header">
+      <p class="eyebrow">About</p>
+      <h1>Written by someone who actually lives here.</h1>
+      <p>Not a travel agency. Not AI-generated. A working nurse in Japan who got tired of watching tourists struggle with things that shouldn't be hard.</p>
+    </div>
+
+    <div class="about-grid">
+
+      <div class="about-body">
+
+        <h2>Why this site exists</h2>
+        <p>
+          Every week I watch visitors at train stations — confused, a little embarrassed, standing in front of a ticket machine they can't read while the line builds behind them. The information to fix this exists, but it's buried in Reddit threads, Facebook groups, and guidebooks written by people who haven't been to Japan in five years.
+        </p>
+        <p>
+          I started <span translate="no">Sumimasen</span> to put that knowledge somewhere permanent and actually usable — something you can open in the moment, not just before you leave home.
+        </p>
+
+        <h2>What makes this different</h2>
+        <ul>
+          <li>Written from daily life in Japan, not a two-week trip</li>
+          <li>Honest about what's awkward, not just what's polite</li>
+          <li>Built to work offline — phrases load without cell service</li>
+          <li>No filler content — every article solves a specific problem</li>
+          <li>Medical-profession attention to accuracy (I don't guess)</li>
+        </ul>
+
+        <h2>Editorial standards</h2>
+        <p>
+          I write from experience and verify against official sources. When I'm not certain, I say so. Prices are shown in both ¥ and $ (USD equivalent). Distances in both km and miles. Nothing on this site is AI-generated — every word is written and reviewed by a human who lives here.
+        </p>
+        <p>
+          When I recommend a product (JR Pass, eSIM, etc.), it's because I've used it or compared it carefully. Some links are affiliate links — I earn a small commission at no cost to you. Full disclosure is on the <a href="/affiliate-disclosure/" style="color:var(--c-teal);">Affiliate Disclosure</a> page.
+        </p>
+
+        <h2>Who I am</h2>
+        <p>
+          I'm a registered nurse currently working in Japan, operating this site under the name <strong>Nijimaru</strong> (虹丸). I keep my personal and professional identities separate — this is a side project, not affiliated with my employer in any way.
+        </p>
+        <p>
+          I'm not a Japan expert by title. I'm someone who has navigated these situations every day for years and wants to make your trip a little less stressful.
+        </p>
+
+        <h2>Contact</h2>
+        <p>Questions, corrections, or suggestions? I read everything.</p>
+        <a href="mailto:[YOUR_CONTACT_EMAIL]" class="contact-link">✉ Send a message</a>
+
+      </div>
+
+      <aside class="about-sidebar" aria-label="Author info">
+        <div class="about-card">
+          <span class="about-card__role">Site operator</span>
+          <span class="about-card__name">Nijimaru (虹丸)</span>
+          <p>Registered nurse · Living in Japan</p>
+          <hr class="about-card__divider">
+          <p><strong>Credentials that matter here:</strong></p>
+          <p>Daily life in Japan. Medical-grade attention to accuracy. No tolerance for outdated information.</p>
+          <hr class="about-card__divider">
+          <p><strong>What this isn't:</strong></p>
+          <p>A travel agency. A sponsored blog. AI content. Clickbait.</p>
+        </div>
+      </aside>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="site-footer__inner">
+      <div class="footer-brand">
+        <a href="/" class="site-nav__logo" translate="no">Sumimasen</a>
+        <p>The Japan guide that tells you what guidebooks are too scared to say.</p>
+      </div>
+      <nav class="footer-cols" aria-label="Footer navigation">
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <ul role="list">
+            <li><a href="/phrases/">Phrases</a></li>
+            <li><a href="/articles/">Articles</a></li>
+            <li><a href="/areas/">Areas</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Info</h3>
+          <ul role="list">
+            <li><a href="/about/">About</a></li>
+            <li><a href="/affiliate-disclosure/">Affiliate Disclosure</a></li>
+            <li><a href="/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="/terms-of-use/">Terms of Use</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 <span translate="no">Sumimasen</span>. Operated by Nijimaru (虹丸).</span>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

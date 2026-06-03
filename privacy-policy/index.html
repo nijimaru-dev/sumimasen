@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Sumimasen</title>
+  <meta name="description" content="Sumimasen privacy policy. We collect almost nothing. Here's exactly what, why, and how.">
+  <meta name="theme-color" content="#2A7C6F">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-body {
+      max-width: 72ch;
+      margin: 0 auto;
+      padding: var(--s-5) var(--s-4) var(--s-6);
+    }
+    .legal-body h2 {
+      font-family: var(--f-heading);
+      font-size: 1.25rem;
+      margin: var(--s-5) 0 var(--s-3);
+      color: var(--c-ink);
+    }
+    .legal-body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: var(--s-4) 0 var(--s-2);
+      color: var(--c-ink);
+    }
+    .legal-body p, .legal-body li {
+      font-size: .9375rem;
+      color: var(--c-muted);
+      margin-bottom: var(--s-3);
+      line-height: var(--lh);
+    }
+    .legal-body ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-2);
+      margin-bottom: var(--s-4);
+    }
+    .legal-body li { padding-left: var(--s-3); position: relative; margin-bottom: 0; }
+    .legal-body li::before { content: '·'; position: absolute; left: 0; color: var(--c-teal); font-weight: 700; }
+    .legal-body a { color: var(--c-teal); }
+    .legal-body a:hover { text-decoration: underline; }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .875rem;
+      margin: var(--s-4) 0;
+    }
+    .data-table th {
+      text-align: left;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+      padding: var(--s-2) var(--s-3);
+      border-bottom: 2px solid var(--c-border);
+    }
+    .data-table td {
+      padding: var(--s-3);
+      border-bottom: 1px solid var(--c-border);
+      color: var(--c-muted);
+      vertical-align: top;
+      font-size: .875rem;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .highlight-box {
+      background: var(--c-teal-light);
+      border-left: 4px solid var(--c-teal);
+      border-radius: 0 var(--r-m) var(--r-m) 0;
+      padding: var(--s-3) var(--s-4);
+      margin: var(--s-4) 0;
+    }
+    .highlight-box p { font-weight: 600; color: var(--c-teal-dark); margin: 0; }
+    .last-updated {
+      font-size: .8rem;
+      color: var(--c-muted);
+      margin-top: var(--s-5);
+      padding-top: var(--s-4);
+      border-top: 1px solid var(--c-border);
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header>
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="site-nav__inner">
+        <a href="/" class="site-nav__logo" translate="no">Sumimasen</a>
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="site-nav__links" id="nav-links" role="list">
+          <li><a href="/phrases/">Phrases</a></li>
+          <li><a href="/articles/">Articles</a></li>
+          <li><a href="/areas/">Areas</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/phrases/" class="nav-cta">Open Phrases →</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <div class="page-header">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p>Short version: we collect almost nothing. Here's the full version anyway.</p>
+    </div>
+
+    <div class="legal-body">
+
+      <div class="highlight-box">
+        <p>This is a static website. We run no servers, store no accounts, and collect no personal data directly. The only data stored on your device is your saved phrases (localStorage), which never leaves your browser.</p>
+      </div>
+
+      <h2>1. Who we are</h2>
+      <p>
+        <span translate="no">Sumimasen</span> is operated by Nijimaru (虹丸), an individual based in Japan. This site is a static website hosted on GitHub Pages. For questions about this policy, contact us via the <a href="/about/">About page</a>.
+      </p>
+
+      <h2>2. What data we collect</h2>
+
+      <h3>Data we collect directly: none</h3>
+      <p>
+        This site has no user accounts, no comment system, no contact forms, and no email sign-up. We do not collect your name, email address, or any identifying information.
+      </p>
+
+      <h3>Data stored on your device (localStorage)</h3>
+      <p>
+        The Phrases page uses your browser's <code>localStorage</code> to save your favorite phrases. This data:
+      </p>
+      <ul>
+        <li>Is stored only on your device — never sent to any server</li>
+        <li>Contains only phrase IDs (e.g. "ph-r-01") — no personal information</li>
+        <li>Can be cleared at any time via your browser's "Clear site data" function</li>
+        <li>Is not used for tracking or analytics</li>
+      </ul>
+
+      <h3>Third-party data collection</h3>
+      <table class="data-table" aria-label="Third-party services and data they collect">
+        <thead>
+          <tr>
+            <th scope="col">Service</th>
+            <th scope="col">Purpose</th>
+            <th scope="col">Data collected by them</th>
+            <th scope="col">Their privacy policy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Google Fonts</strong></td>
+            <td>Typeface loading</td>
+            <td>IP address, browser info (per Google)</td>
+            <td><a href="https://policies.google.com/privacy" rel="noopener">Google Privacy Policy</a></td>
+          </tr>
+          <tr>
+            <td><strong>Google Maps (embeds)</strong></td>
+            <td>Store location maps on area pages</td>
+            <td>IP address, interaction data (per Google)</td>
+            <td><a href="https://policies.google.com/privacy" rel="noopener">Google Privacy Policy</a></td>
+          </tr>
+          <tr>
+            <td><strong>GitHub Pages</strong></td>
+            <td>Website hosting</td>
+            <td>Server access logs (IP, browser, pages visited)</td>
+            <td><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub Privacy Policy</a></td>
+          </tr>
+          <tr>
+            <td><strong>Affiliate partners</strong><br><small>(JRPass, Airalo, Booking.com, Klook)</small></td>
+            <td>Tracking clicks to affiliate links</td>
+            <td>Click data, purchase data (if you buy)</td>
+            <td>Each partner's own privacy policy</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>3. Cookies</h2>
+      <p>
+        <span translate="no">Sumimasen</span> does not set any cookies directly. Third-party services embedded in this site (Google Fonts, Google Maps, affiliate links) may set their own cookies according to their privacy policies.
+      </p>
+      <p>
+        The Service Worker used for offline functionality stores cached versions of pages in your browser's cache storage. This is used only to make the site work offline and is not used for tracking.
+      </p>
+
+      <h2>4. Your rights</h2>
+      <p>
+        Because we collect no personal data, there is nothing for us to provide, correct, or delete. For data held by third parties (Google, GitHub, affiliate partners), please refer to their privacy policies and exercise your rights directly with them.
+      </p>
+      <p>
+        If you are in the EU (GDPR) or California (CCPA/CPRA), you have rights regarding your personal data. Since we hold none, those rights are best exercised with the third-party services above.
+      </p>
+
+      <h2>5. Children's privacy</h2>
+      <p>
+        This site is not directed at children under 13. We do not knowingly collect information from children. If you believe a child has provided information through this site, please contact us.
+      </p>
+
+      <h2>6. Changes to this policy</h2>
+      <p>
+        We will update this policy if our data practices change (for example, if we add analytics or a newsletter). The "last updated" date below will reflect the most recent revision.
+      </p>
+
+      <h2>7. Contact</h2>
+      <p>Privacy questions? Use the contact information on the <a href="/about/">About page</a>.</p>
+
+      <p class="last-updated">Last updated: June 2026. Operator: Nijimaru (虹丸), Japan.</p>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="site-footer__inner">
+      <div class="footer-brand">
+        <a href="/" class="site-nav__logo" translate="no">Sumimasen</a>
+        <p>The Japan guide that tells you what guidebooks are too scared to say.</p>
+      </div>
+      <nav class="footer-cols" aria-label="Footer navigation">
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <ul role="list">
+            <li><a href="/phrases/">Phrases</a></li>
+            <li><a href="/articles/">Articles</a></li>
+            <li><a href="/areas/">Areas</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Info</h3>
+          <ul role="list">
+            <li><a href="/about/">About</a></li>
+            <li><a href="/affiliate-disclosure/">Affiliate Disclosure</a></li>
+            <li><a href="/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="/terms-of-use/">Terms of Use</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 <span translate="no">Sumimasen</span>. Operated by Nijimaru (虹丸).</span>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

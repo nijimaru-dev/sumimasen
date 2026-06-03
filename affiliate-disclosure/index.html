@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Affiliate Disclosure — Sumimasen</title>
+  <meta name="description" content="Sumimasen earns commissions from some links. Here's exactly how that works and what it means for you.">
+  <meta name="theme-color" content="#2A7C6F">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-body {
+      max-width: 72ch;
+      margin: 0 auto;
+      padding: var(--s-5) var(--s-4) var(--s-6);
+    }
+    .legal-body h2 {
+      font-family: var(--f-heading);
+      font-size: 1.25rem;
+      margin: var(--s-5) 0 var(--s-3);
+      color: var(--c-ink);
+    }
+    .legal-body p, .legal-body li {
+      font-size: .9375rem;
+      color: var(--c-muted);
+      margin-bottom: var(--s-3);
+      line-height: var(--lh);
+    }
+    .legal-body ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-2);
+      margin-bottom: var(--s-4);
+    }
+    .legal-body li {
+      padding-left: var(--s-3);
+      position: relative;
+      margin-bottom: 0;
+    }
+    .legal-body li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--c-teal);
+      font-weight: 700;
+    }
+    .legal-body a { color: var(--c-teal); }
+    .legal-body a:hover { text-decoration: underline; }
+    .affiliate-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .875rem;
+      margin: var(--s-4) 0;
+    }
+    .affiliate-table th {
+      text-align: left;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+      padding: var(--s-2) var(--s-3);
+      border-bottom: 2px solid var(--c-border);
+    }
+    .affiliate-table td {
+      padding: var(--s-3);
+      border-bottom: 1px solid var(--c-border);
+      color: var(--c-muted);
+      vertical-align: top;
+    }
+    .affiliate-table tr:last-child td { border-bottom: none; }
+    .highlight-box {
+      background: var(--c-teal-light);
+      border-left: 4px solid var(--c-teal);
+      border-radius: 0 var(--r-m) var(--r-m) 0;
+      padding: var(--s-3) var(--s-4);
+      margin: var(--s-4) 0;
+    }
+    .highlight-box p {
+      font-weight: 600;
+      color: var(--c-teal-dark);
+      margin: 0;
+    }
+    .last-updated {
+      font-size: .8rem;
+      color: var(--c-muted);
+      margin-top: var(--s-5);
+      padding-top: var(--s-4);
+      border-top: 1px solid var(--c-border);
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header>
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="site-nav__inner">
+        <a href="/" class="site-nav__logo" translate="no">Sumimasen</a>
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="site-nav__links" id="nav-links" role="list">
+          <li><a href="/phrases/">Phrases</a></li>
+          <li><a href="/articles/">Articles</a></li>
+          <li><a href="/areas/">Areas</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/phrases/" class="nav-cta">Open Phrases →</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <div class="page-header">
+      <p class="eyebrow">Legal</p>
+      <h1>Affiliate Disclosure</h1>
+      <p>Required by the FTC. Written plainly so you actually understand it.</p>
+    </div>
+
+    <div class="legal-body">
+
+      <div class="highlight-box">
+        <p>Some links on this site earn me a commission. I only recommend products I'd actually use. Your price is never affected.</p>
+      </div>
+
+      <h2>The short version</h2>
+      <p>
+        <span translate="no">Sumimasen</span> participates in affiliate programs. When you click certain links and make a purchase, I earn a small commission — at no extra cost to you. This helps keep the site free and ad-light.
+      </p>
+      <p>
+        I was recommending these products before I had affiliate relationships with them. My editorial opinions are not influenced by commissions.
+      </p>
+
+      <h2>FTC disclosure (required by law)</h2>
+      <p>
+        In accordance with the Federal Trade Commission's guidelines on endorsements and testimonials (16 CFR Part 255), <span translate="no">Sumimasen</span> discloses that this site contains affiliate links. The operator of this site may receive compensation when you click on links and make purchases.
+      </p>
+      <p>
+        This disclosure applies to all pages on <span translate="no">sumimasen</span>. Affiliate links are not specially marked on every page, but this disclosure covers the entire site.
+      </p>
+
+      <h2>Current affiliate relationships</h2>
+      <table class="affiliate-table" aria-label="Affiliate partners and commission rates">
+        <thead>
+          <tr>
+            <th scope="col">Partner</th>
+            <th scope="col">What it is</th>
+            <th scope="col">Commission</th>
+            <th scope="col">Where used</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>JRPass.com</strong></td>
+            <td>JR Pass purchasing</td>
+            <td>1–3%</td>
+            <td>Transport articles, JR Pass calculator</td>
+          </tr>
+          <tr>
+            <td><strong>Airalo</strong></td>
+            <td>eSIM for Japan</td>
+            <td>10–20%</td>
+            <td>Transport, Essentials pages</td>
+          </tr>
+          <tr>
+            <td><strong>Booking.com</strong></td>
+            <td>Hotel booking</td>
+            <td>4–6%</td>
+            <td>Area guides, accommodation articles</td>
+          </tr>
+          <tr>
+            <td><strong>Klook</strong></td>
+            <td>Tours and experiences</td>
+            <td>~20%</td>
+            <td>Culture articles, local experience guides</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>What this means for you</h2>
+      <ul>
+        <li>You pay exactly the same price whether you use my links or go directly</li>
+        <li>I never recommend a product just because it has a higher commission rate</li>
+        <li>If I don't think a product is worth it, I say so — even if there's an affiliate program available</li>
+        <li>Commissions help cover hosting costs and keep this site free and without intrusive ads</li>
+      </ul>
+
+      <h2>Non-affiliate content</h2>
+      <p>
+        The majority of this site — all phrase cards, cultural guides, transport information, and area pages — contains no affiliate links and earns nothing from your visit. That content exists purely to be useful.
+      </p>
+
+      <h2>Questions</h2>
+      <p>
+        If you're ever unsure whether a link is an affiliate link, or if you have questions about this policy, contact me at <a href="/about/">the About page</a>.
+      </p>
+
+      <p class="last-updated">Last updated: June 2026. This disclosure applies to all pages on this site.</p>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="site-footer__inner">
+      <div class="footer-brand">
+        <a href="/" class="site-nav__logo" translate="no">Sumimasen</a>
+        <p>The Japan guide that tells you what guidebooks are too scared to say.</p>
+      </div>
+      <nav class="footer-cols" aria-label="Footer navigation">
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <ul role="list">
+            <li><a href="/phrases/">Phrases</a></li>
+            <li><a href="/articles/">Articles</a></li>
+            <li><a href="/areas/">Areas</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Info</h3>
+          <ul role="list">
+            <li><a href="/about/">About</a></li>
+            <li><a href="/affiliate-disclosure/">Affiliate Disclosure</a></li>
+            <li><a href="/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="/terms-of-use/">Terms of Use</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 <span translate="no">Sumimasen</span>. Operated by Nijimaru (虹丸).</span>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
