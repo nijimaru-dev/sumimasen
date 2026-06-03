@@ -41,6 +41,13 @@
 - 説教しない・上から目線禁止 — "you should" より "here's what works"
 - 最初の2文で問題か結論を出す。背景説明から始めない
 
+## インストール済みスキル
+| スキル | 場所 | 用途 |
+|---|---|---|
+| `seo-content-writer` | `.claude/skills/seo-content-writer/SKILL.md` | Phase 7 SEO記事・メタ記述・構造化データ |
+
+※ `@affitor/affiliate-skills`（npm）は404で存在しないため未インストール。
+
 ## チーム
 - 藤丸（CEO）: 最終承認
 - 参謀（Claude.ai）: 設計判断
