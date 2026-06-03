@@ -27,6 +27,20 @@
 - CSSパス: /css/style.css ではなく ../css/style.css を使う
 - GitHub Pages: nijimaru-dev/sumimasen（Public）
 
+## 記事ライティングルール（articles/ 以下全記事）
+**禁止ワード（使った瞬間に書き直す）:**
+- delve into / it's worth noting / in conclusion / seamlessly / leverage
+- "as you might know" / "without further ado" / "it goes without saying"
+- "In this article, we will..." で始まる導入
+
+**文体ルール:**
+- 一人称視点・話しかける口調: "You walk in and..." / "Here's what happens."
+- 断定口調: "This is how it works." / "Don't do X." — 曖昧にしない
+- 短文多用・リズム重視。2文続けて長かったら1文を10語以下に削る
+- 英語ネイティブが友人に話すようなトーン（米語）
+- 説教しない・上から目線禁止 — "you should" より "here's what works"
+- 最初の2文で問題か結論を出す。背景説明から始めない
+
 ## チーム
 - 藤丸（CEO）: 最終承認
 - 参謀（Claude.ai）: 設計判断

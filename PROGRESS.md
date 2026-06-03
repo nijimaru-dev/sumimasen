@@ -1,23 +1,23 @@
 # PROGRESS
 
-Phase: 4
+Phase: 5
 Status: done
-Last: JRパス計算機・為替計算機・緊急連絡先ページ
-Next: Phase 5開始（エリア別英語対応店キュレーション追加）
+Last: areas/index.html・asakusa・shibuya・iruma + CLAUDE.mdライティングルール追記
+Next: Phase 6開始（アフィリエイトリンク設置・AdSense申請）
 Blockers: -
-Updated: 2026-06-03
+Updated: 2026-06-04
 
-## Phase 4 チェックリスト
-- [x] tools/jr-pass-calculator/index.html
-      （ルート選択→個別費用合計vsパス比較→節約額→CTA。穴⑥: $換算はUSD_PER_JPY定数で明示）
-- [x] tools/exchange-rate/index.html
-      （穴⑥: open.er-api.com APIを使用・取得時刻明示・タイムアウト5秒・フォールバック表示）
-- [x] tools/emergency-contacts/index.html
-      （穴⑤: 番号直書きなし・公的リンクのみ・JNTO・各国大使館・AMDA）
-- [x] css/style.css ツールスタイル追加
+## Phase 5 チェックリスト
+- [x] areas/index.html（エリア一覧・3エリア）
+- [x] areas/asakusa/index.html（仲見世・かっぱ橋・ホッピー通り・麦とろ）
+- [x] areas/shibuya/index.html（スクランブル・ヒカリエ・一蘭・竹下通り）
+- [x] areas/iruma/index.html（三井アウトレット・駅前ラーメン・狭山茶）
+- [x] CLAUDE.md ライティングルール追記（禁止ワード・断定口調・短文リズム）
 
-## Phase 5 チェックリスト（次回）
-- [ ] areas/index.html（エリア一覧ページ）
-- [ ] areas/shibuya/index.html（渋谷）
-- [ ] areas/iruma/index.html（入間）
-- [ ] areas/asakusa/index.html の充実（既存テンプレートをリアル内容に）
+## 積み残し（任意・Phase後半で対処）
+- [ ] 既存記事6本の文体チェック（新ライティングルール適用）
+
+## Phase 6 チェックリスト（次回）
+- [ ] 全記事にアフィリエイトリンク設置（JRパス・eSIM・ホテル・ツアー）
+- [ ] eSIM比較ページ（Airalo）
+- [ ] Google AdSense申請（Wise住所エラー解決後・収益化の前提条件確認）
