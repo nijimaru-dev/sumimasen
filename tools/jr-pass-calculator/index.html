@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JR Pass Calculator — Should You Buy One? — Sumimasen</title>
+  <meta name="description" content="Enter the cities you plan to visit and find out whether the JR Pass saves you money — or costs you more than buying tickets individually.">
+  <meta name="theme-color" content="#2A7C6F">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header>
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="site-nav__inner">
+        <a href="/" class="site-nav__logo" translate="no">Sumimasen</a>
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="site-nav__links" id="nav-links" role="list">
+          <li><a href="/phrases/">Phrases</a></li>
+          <li><a href="/articles/">Articles</a></li>
+          <li><a href="/areas/">Areas</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/phrases/" class="nav-cta">Open Phrases →</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="page-header">
+      <p class="eyebrow">Tools</p>
+      <h1>JR Pass Calculator</h1>
+      <p>Select your destinations and trip length. The calculator compares individual ticket costs against each JR Pass option — no guesswork.</p>
+    </div>
+
+    <div class="affiliate-notice">
+      <strong>Affiliate disclosure:</strong> If you buy a JR Pass through our link, we earn a small commission at no extra cost to you. The calculator recommends the pass only when it genuinely saves money. <a href="/affiliate-disclosure/">Full disclosure →</a>
+    </div>
+
+    <div class="tool-page">
+
+      <!-- Step 1: Routes -->
+      <div class="tool-step">
+        <p class="tool-step__label">Step 1</p>
+        <h2>Which Shinkansen routes will you take?</h2>
+        <p style="font-size:.875rem;color:var(--c-muted);margin-bottom:var(--s-3);">Select each trip. Prices are 2026 standard unreserved seat fares (one-way).</p>
+        <div class="check-grid" id="route-list">
+          <label class="check-item">
+            <input type="checkbox" name="route" value="13320" data-label="Tokyo → Kyoto">
+            <span class="check-item__text">Tokyo → Kyoto<span class="check-item__sub">¥13,320 / ~$88</span></span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="route" value="13320" data-label="Kyoto → Tokyo">
+            <span class="check-item__text">Kyoto → Tokyo<span class="check-item__sub">¥13,320 / ~$88</span></span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="route" value="14720" data-label="Tokyo → Osaka">
+            <span class="check-item__text">Tokyo → Osaka<span class="check-item__sub">¥14,720 / ~$97</span></span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="route" value="14720" data-label="Osaka → Tokyo">
+            <span class="check-item__text">Osaka → Tokyo<span class="check-item__sub">¥14,720 / ~$97</span></span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="route" value="9440" data-label="Kyoto / Osaka → Hiroshima">
+            <span class="check-item__text">Kyoto/Osaka → Hiroshima<span class="check-item__sub">¥9,440–10,440 / ~$62–69</span></span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="route" value="9440" data-label="Hiroshima → Kyoto / Osaka">
+            <span class="check-item__text">Hiroshima → Kyoto/Osaka<span class="check-item__sub">¥9,440–10,440 / ~$62–69</span></span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="route" value="18700" data-label="Tokyo → Hiroshima">
+            <span class="check-item__text">Tokyo → Hiroshima<span class="check-item__sub">¥18,700 / ~$124</span></span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="route" value="5760" data-label="Hiroshima → Fukuoka">
+            <span class="check-item__text">Hiroshima → Fukuoka<span class="check-item__sub">¥5,760 / ~$38</span></span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="route" value="22320" data-label="Tokyo → Fukuoka">
+            <span class="check-item__text">Tokyo → Fukuoka<span class="check-item__sub">¥22,320 / ~$148</span></span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="route" value="14760" data-label="Osaka → Fukuoka">
+            <span class="check-item__text">Osaka → Fukuoka<span class="check-item__sub">¥14,760 / ~$98</span></span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="route" value="6680" data-label="Tokyo → Nagoya">
+            <span class="check-item__text">Tokyo → Nagoya<span class="check-item__sub">¥6,680 / ~$44</span></span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="route" value="6680" data-label="Nagoya → Osaka">
+            <span class="check-item__text">Nagoya → Osaka<span class="check-item__sub">¥6,680 / ~$44</span></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Step 2: Duration -->
+      <div class="tool-step">
+        <p class="tool-step__label">Step 2</p>
+        <h2>Which pass are you considering?</h2>
+        <div class="duration-grid">
+          <label class="duration-btn">
+            <input type="radio" name="pass" value="50000" checked>
+            <div class="duration-btn__days">7-day pass</div>
+            <div class="duration-btn__price">¥50,000 / ~$330</div>
+          </label>
+          <label class="duration-btn">
+            <input type="radio" name="pass" value="80000">
+            <div class="duration-btn__days">14-day pass</div>
+            <div class="duration-btn__price">¥80,000 / ~$530</div>
+          </label>
+          <label class="duration-btn">
+            <input type="radio" name="pass" value="100000">
+            <div class="duration-btn__days">21-day pass</div>
+            <div class="duration-btn__price">¥100,000 / ~$660</div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Calculate button -->
+      <button class="btn btn-primary" id="calc-btn" style="width:100%;justify-content:center;" aria-live="polite">
+        Calculate →
+      </button>
+
+      <!-- Result -->
+      <div class="result-box" id="result" role="region" aria-label="Calculator result">
+        <div id="result-verdict" class="result-box__verdict"></div>
+        <div class="result-row">
+          <span class="result-row__label">Individual tickets total</span>
+          <span class="result-row__value" id="r-individual"></span>
+        </div>
+        <div class="result-row">
+          <span class="result-row__label">JR Pass cost</span>
+          <span class="result-row__value" id="r-pass"></span>
+        </div>
+        <div class="result-row">
+          <span class="result-row__label" id="r-diff-label"></span>
+          <span class="result-row__value" id="r-diff"></span>
+        </div>
+        <div id="r-cta" style="margin-top:var(--s-4);"></div>
+      </div>
+
+      <!-- Notes -->
+      <div style="margin-top:var(--s-4);padding:var(--s-3);background:var(--c-bg);border-radius:var(--r-m);font-size:.8125rem;color:var(--c-muted);">
+        <strong>Notes:</strong> Fares are approximate 2026 standard unreserved seat prices. The JR Pass also covers local JR trains within cities, Narita Express (Tokyo), and many other JR lines — these may add value not captured here. Nozomi and Mizuho Shinkansen are <em>not</em> covered by the JR Pass; Hikari and Sakura are covered.
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="site-footer__inner">
+      <div class="footer-brand">
+        <a href="/" class="site-nav__logo" translate="no">Sumimasen</a>
+        <p>The Japan guide that tells you what guidebooks are too scared to say.</p>
+      </div>
+      <nav class="footer-cols" aria-label="Footer navigation">
+        <div class="footer-col">
+          <h3>More tools</h3>
+          <ul role="list">
+            <li><a href="/tools/exchange-rate/">Exchange rate</a></li>
+            <li><a href="/tools/emergency-contacts/">Emergency contacts</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Info</h3>
+          <ul role="list">
+            <li><a href="/about/">About</a></li>
+            <li><a href="/affiliate-disclosure/">Affiliate Disclosure</a></li>
+            <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 <span translate="no">Sumimasen</span>. Operated by Nijimaru (虹丸).</span>
+      <span><a href="/affiliate-disclosure/">Affiliate disclosure</a></span>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+  <script>
+    const USD_PER_JPY = 1 / 150; // approximate
+
+    function fmt(yen) {
+      return '¥' + yen.toLocaleString() + ' / ~$' + Math.round(yen * USD_PER_JPY).toLocaleString();
+    }
+
+    document.getElementById('calc-btn').addEventListener('click', () => {
+      const routes = document.querySelectorAll('input[name="route"]:checked');
+      const passInput = document.querySelector('input[name="pass"]:checked');
+
+      if (!routes.length) {
+        alert('Please select at least one route.');
+        return;
+      }
+
+      const individualTotal = Array.from(routes).reduce((sum, r) => sum + parseInt(r.value), 0);
+      const passCost = parseInt(passInput.value);
+      const diff = individualTotal - passCost;
+
+      const result   = document.getElementById('result');
+      const verdict  = document.getElementById('result-verdict');
+      const rCta     = document.getElementById('r-cta');
+
+      document.getElementById('r-individual').textContent = fmt(individualTotal);
+      document.getElementById('r-pass').textContent = fmt(passCost);
+
+      if (diff > 0) {
+        verdict.textContent = '✓ The JR Pass saves you money.';
+        verdict.className = 'result-box__verdict result-box__verdict--pass';
+        document.getElementById('r-diff-label').textContent = 'You save';
+        document.getElementById('r-diff').textContent = fmt(diff);
+        document.getElementById('r-diff').className = 'result-row__value result-row__value--savings';
+        rCta.innerHTML = '<a href="https://www.jrpass.com/" rel="sponsored noopener" target="_blank" class="btn btn-primary">Buy the JR Pass →</a><p style="font-size:.75rem;color:var(--c-muted);margin-top:var(--s-2);">Affiliate link · Buy before leaving Japan for the best price.</p>';
+      } else {
+        verdict.textContent = '✗ Individual tickets cost less.';
+        verdict.className = 'result-box__verdict result-box__verdict--individual';
+        document.getElementById('r-diff-label').textContent = 'Pass costs you extra';
+        document.getElementById('r-diff').textContent = fmt(Math.abs(diff));
+        document.getElementById('r-diff').className = 'result-row__value result-row__value--loss';
+        rCta.innerHTML = '<p style="font-size:.875rem;color:var(--c-muted);">Buy individual Shinkansen tickets at station ticket machines or via <a href="https://www.jrpass.com/" rel="noopener" target="_blank" style="color:var(--c-teal);">JRPass.com</a>. Use your IC card (Suica/Pasmo) for local trains.</p>';
+      }
+
+      result.classList.add('is-visible');
+      result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  </script>
+</body>
+</html>

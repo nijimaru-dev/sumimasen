@@ -997,3 +997,240 @@ p { max-width: var(--measure); }
   padding: var(--s-4);
 }
 .author-note p { font-size: .875rem; color: var(--c-teal-dark); margin: 0; }
+
+/* ===========================
+   TOOLS
+   =========================== */
+.tool-page {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: var(--s-5) var(--s-4) var(--s-6);
+}
+.tool-description {
+  font-size: .9375rem;
+  color: var(--c-muted);
+  max-width: 56ch;
+  margin-bottom: var(--s-5);
+}
+
+/* Step cards */
+.tool-step {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-l);
+  padding: var(--s-4);
+  margin-bottom: var(--s-3);
+}
+.tool-step__label {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--c-teal);
+  margin-bottom: var(--s-2);
+}
+.tool-step h2 {
+  font-family: var(--f-heading);
+  font-size: 1.125rem;
+  margin-bottom: var(--s-3);
+}
+
+/* Checkbox grid */
+.check-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--s-2);
+}
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-2);
+  padding: var(--s-2) var(--s-3);
+  border: 1.5px solid var(--c-border);
+  border-radius: var(--r-m);
+  cursor: pointer;
+  transition: all var(--ease);
+  user-select: none;
+}
+.check-item:has(input:checked) {
+  border-color: var(--c-teal);
+  background: var(--c-teal-light);
+}
+.check-item input[type="checkbox"],
+.check-item input[type="radio"] {
+  accent-color: var(--c-teal);
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.check-item__text { font-size: .875rem; font-weight: 600; color: var(--c-ink); }
+.check-item__sub { font-size: .75rem; color: var(--c-muted); display: block; }
+
+/* Duration toggle */
+.duration-grid {
+  display: flex;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+}
+.duration-btn {
+  flex: 1;
+  min-width: 120px;
+  padding: var(--s-3) var(--s-4);
+  border: 1.5px solid var(--c-border);
+  border-radius: var(--r-m);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--ease);
+  background: var(--c-bg);
+}
+.duration-btn:has(input:checked) {
+  border-color: var(--c-teal);
+  background: var(--c-teal-light);
+}
+.duration-btn input { display: none; }
+.duration-btn__days { font-weight: 700; font-size: 1rem; color: var(--c-ink); }
+.duration-btn__price { font-size: .8125rem; color: var(--c-muted); margin-top: 2px; }
+
+/* Result box */
+.result-box {
+  background: var(--c-white);
+  border: 2px solid var(--c-border);
+  border-radius: var(--r-l);
+  padding: var(--s-4);
+  margin-top: var(--s-4);
+  display: none;
+}
+.result-box.is-visible { display: block; }
+.result-box__verdict {
+  font-family: var(--f-heading);
+  font-size: 1.375rem;
+  margin-bottom: var(--s-3);
+}
+.result-box__verdict--pass { color: var(--c-teal-dark); }
+.result-box__verdict--individual { color: var(--c-ink); }
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--s-2) 0;
+  border-bottom: 1px solid var(--c-border);
+  font-size: .9375rem;
+}
+.result-row:last-child { border-bottom: none; }
+.result-row__label { color: var(--c-muted); }
+.result-row__value { font-weight: 700; color: var(--c-ink); }
+.result-row__value--savings { color: var(--c-teal-dark); }
+.result-row__value--loss { color: var(--c-red); }
+
+/* Exchange rate display */
+.rate-display {
+  background: var(--c-teal-light);
+  border-radius: var(--r-l);
+  padding: var(--s-4);
+  text-align: center;
+  margin: var(--s-4) 0;
+}
+.rate-display__number {
+  font-family: var(--f-heading);
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  color: var(--c-teal-dark);
+  line-height: 1.1;
+}
+.rate-display__meta {
+  font-size: .8125rem;
+  color: var(--c-muted);
+  margin-top: var(--s-2);
+}
+.rate-display__warning {
+  font-size: .8125rem;
+  color: #7D5A1E;
+  background: #FFF8E7;
+  border-radius: var(--r-s);
+  padding: var(--s-2) var(--s-3);
+  margin-top: var(--s-2);
+}
+.convert-inputs {
+  display: flex;
+  gap: var(--s-3);
+  align-items: center;
+  flex-wrap: wrap;
+  margin: var(--s-4) 0;
+}
+.convert-field {
+  flex: 1;
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+.convert-field label {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+.convert-field input {
+  padding: var(--s-3);
+  border: 1.5px solid var(--c-border);
+  border-radius: var(--r-m);
+  font-size: 1.125rem;
+  font-weight: 600;
+  background: var(--c-white);
+  color: var(--c-ink);
+  transition: border-color var(--ease);
+  width: 100%;
+}
+.convert-field input:focus {
+  outline: none;
+  border-color: var(--c-teal);
+}
+.convert-arrow {
+  font-size: 1.5rem;
+  color: var(--c-muted);
+  padding-top: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* Emergency contacts */
+.emergency-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--s-3);
+  margin: var(--s-4) 0;
+}
+.emergency-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-l);
+  padding: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  transition: all var(--ease);
+}
+.emergency-card:hover { border-color: var(--c-teal); box-shadow: var(--sh-s); }
+.emergency-card__icon { font-size: 1.5rem; line-height: 1; }
+.emergency-card__title { font-weight: 700; font-size: 1rem; }
+.emergency-card__desc { font-size: .8125rem; color: var(--c-muted); flex: 1; line-height: 1.5; }
+.emergency-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  font-size: .8125rem;
+  font-weight: 600;
+  color: var(--c-teal);
+  margin-top: auto;
+  transition: color var(--ease);
+}
+.emergency-card__link:hover { color: var(--c-teal-dark); text-decoration: underline; }
+.emergency-warning {
+  background: #FFF8E7;
+  border-left: 4px solid #E67E22;
+  border-radius: 0 var(--r-m) var(--r-m) 0;
+  padding: var(--s-3) var(--s-4);
+  margin-bottom: var(--s-4);
+  font-size: .875rem;
+  color: #7D5A1E;
+}

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yen / Dollar Exchange Rate Calculator — Sumimasen</title>
+  <meta name="description" content="Live yen to dollar converter for Japan travel. Shows the rate timestamp so you always know how fresh the data is.">
+  <meta name="theme-color" content="#2A7C6F">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header>
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="site-nav__inner">
+        <a href="/" class="site-nav__logo" translate="no">Sumimasen</a>
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="site-nav__links" id="nav-links" role="list">
+          <li><a href="/phrases/">Phrases</a></li>
+          <li><a href="/articles/">Articles</a></li>
+          <li><a href="/areas/">Areas</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/phrases/" class="nav-cta">Open Phrases →</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="page-header">
+      <p class="eyebrow">Tools</p>
+      <h1>¥ ↔ $ Exchange Rate</h1>
+      <p>Live rate with a visible timestamp — so you always know whether you're looking at today's rate or yesterday's.</p>
+    </div>
+
+    <div class="tool-page">
+
+      <!-- Live rate display -->
+      <div class="rate-display" id="rate-display" aria-live="polite" aria-label="Current exchange rate">
+        <div class="rate-display__number" id="rate-number">Loading…</div>
+        <div class="rate-display__meta" id="rate-meta"></div>
+        <div class="rate-display__warning" id="rate-warning" style="display:none;"></div>
+      </div>
+
+      <!-- Converter -->
+      <div class="tool-step">
+        <p class="tool-step__label">Convert</p>
+        <h2>Yen ↔ Dollars</h2>
+        <div class="convert-inputs">
+          <div class="convert-field">
+            <label for="input-jpy">Japanese Yen (¥)</label>
+            <input type="number" id="input-jpy" placeholder="1000" min="0" inputmode="decimal" aria-label="Amount in yen">
+          </div>
+          <span class="convert-arrow" aria-hidden="true">⇄</span>
+          <div class="convert-field">
+            <label for="input-usd">US Dollars ($)</label>
+            <input type="number" id="input-usd" placeholder="6.67" min="0" inputmode="decimal" aria-label="Amount in dollars">
+          </div>
+        </div>
+        <p style="font-size:.8125rem;color:var(--c-muted);">Rate updates each time you open this page. For large transactions, verify with your bank — rates vary by provider.</p>
+      </div>
+
+      <!-- Common amounts quick-reference -->
+      <div class="tool-step">
+        <p class="tool-step__label">Quick reference</p>
+        <h2>Common amounts</h2>
+        <div id="quick-table" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s-2);">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- ATM tip -->
+      <div class="callout" style="margin-top:var(--s-4);">
+        <p><strong>Best rate in Japan:</strong> 7-Bank ATMs (inside 7-Eleven). They accept most foreign cards and use the Mastercard/Visa network rate, which is typically better than airport exchange desks. Fee: ~¥110–220 per transaction.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="site-footer__inner">
+      <div class="footer-brand">
+        <a href="/" class="site-nav__logo" translate="no">Sumimasen</a>
+        <p>The Japan guide that tells you what guidebooks are too scared to say.</p>
+      </div>
+      <nav class="footer-cols" aria-label="Footer navigation">
+        <div class="footer-col">
+          <h3>More tools</h3>
+          <ul role="list">
+            <li><a href="/tools/jr-pass-calculator/">JR Pass calculator</a></li>
+            <li><a href="/tools/emergency-contacts/">Emergency contacts</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Info</h3>
+          <ul role="list">
+            <li><a href="/about/">About</a></li>
+            <li><a href="/affiliate-disclosure/">Affiliate Disclosure</a></li>
+            <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 <span translate="no">Sumimasen</span>. Operated by Nijimaru (虹丸).</span>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+  <script>
+    /* ---- Rate fetch (穴⑥: always show timestamp, fallback if unavailable) ---- */
+    const FALLBACK_RATE = 150;     /* ¥ per $1 — hardcoded approximate */
+    const FALLBACK_DATE = 'June 2026'; /* update when deploying */
+
+    let yenPerDollar = FALLBACK_RATE;
+
+    async function loadRate() {
+      const numEl  = document.getElementById('rate-number');
+      const metaEl = document.getElementById('rate-meta');
+      const warnEl = document.getElementById('rate-warning');
+
+      try {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 5000); /* 5 s timeout */
+
+        const res = await fetch('https://open.er-api.com/v6/latest/USD', {
+          signal: controller.signal
+        });
+        clearTimeout(timer);
+
+        if (!res.ok) throw new Error('API error ' + res.status);
+
+        const data = await res.json();
+        yenPerDollar = data.rates.JPY;
+
+        const updated = new Date(data.time_last_update_unix * 1000);
+        const dateStr = updated.toLocaleDateString('en-US', {
+          month: 'long', day: 'numeric', year: 'numeric'
+        });
+
+        numEl.textContent  = '¥1 = $' + (1 / yenPerDollar).toFixed(4);
+        metaEl.textContent = 'Rate from ' + dateStr + ' · Updates daily';
+        warnEl.style.display = 'none';
+
+      } catch {
+        /* Fallback —穴⑥: show approximate label and manual update date */
+        yenPerDollar = FALLBACK_RATE;
+        numEl.textContent  = '¥1 ≈ $' + (1 / FALLBACK_RATE).toFixed(4) + ' (approx.)';
+        metaEl.textContent = 'Could not load live rate';
+        warnEl.textContent = '⚠ Showing approximate rate as of ' + FALLBACK_DATE + '. Live data unavailable. Verify before any financial transaction.';
+        warnEl.style.display = 'block';
+      }
+
+      buildQuickTable();
+    }
+
+    /* ---- Two-way converter ---- */
+    const jpyInput = document.getElementById('input-jpy');
+    const usdInput = document.getElementById('input-usd');
+    let updating = false;
+
+    jpyInput.addEventListener('input', () => {
+      if (updating) return;
+      updating = true;
+      const v = parseFloat(jpyInput.value);
+      usdInput.value = isNaN(v) ? '' : (v / yenPerDollar).toFixed(2);
+      updating = false;
+    });
+
+    usdInput.addEventListener('input', () => {
+      if (updating) return;
+      updating = true;
+      const v = parseFloat(usdInput.value);
+      jpyInput.value = isNaN(v) ? '' : Math.round(v * yenPerDollar);
+      updating = false;
+    });
+
+    /* ---- Quick reference table ---- */
+    const AMOUNTS_JPY = [500, 1000, 2000, 5000, 10000, 20000, 50000];
+
+    function buildQuickTable() {
+      const el = document.getElementById('quick-table');
+      el.innerHTML = '';
+      AMOUNTS_JPY.forEach(yen => {
+        const usd = (yen / yenPerDollar).toFixed(2);
+        el.insertAdjacentHTML('beforeend',
+          '<div style="padding:var(--s-2) var(--s-3);background:var(--c-white);border:1px solid var(--c-border);border-radius:var(--r-m);font-size:.875rem;">' +
+          '<strong>¥' + yen.toLocaleString() + '</strong></div>' +
+          '<div style="padding:var(--s-2) var(--s-3);background:var(--c-teal-light);border:1px solid var(--c-border);border-radius:var(--r-m);font-size:.875rem;font-weight:600;color:var(--c-teal-dark);">~$' + usd + '</div>'
+        );
+      });
+    }
+
+    loadRate();
+  </script>
+</body>
+</html>
