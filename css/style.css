@@ -1,0 +1,43 @@
+/* =========================================================
+   Sumimasen — Global Stylesheet
+   Design principles: Notion design notes Phase 0
+   Phase 1 will build out full styles.
+   ========================================================= */
+
+/* --- Design tokens --- */
+:root {
+  --color-bg:       #F7F9F8;   /* warm white */
+  --color-ink:      #1A2421;   /* near-black, not pure black */
+  --color-primary:  #2A7C6F;   /* teal / blue-green */
+  --color-cta:      #C0392B;   /* torii red — CTA only, small area */
+  --color-muted:    #5C6E69;
+
+  --font-heading:   'Playfair Display', Georgia, serif;
+  --font-body:      'Plus Jakarta Sans', system-ui, sans-serif;
+
+  --measure:        66ch;      /* max line length */
+  --line-height:    1.6;
+}
+
+/* --- Reset & base --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 100%; scroll-behavior: smooth; }
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+p, li {
+  max-width: var(--measure);
+}
