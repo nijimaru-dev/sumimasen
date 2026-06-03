@@ -1234,3 +1234,79 @@ p { max-width: var(--measure); }
   font-size: .875rem;
   color: #7D5A1E;
 }
+
+/* ===========================
+   DARK MODE
+   ui-ux-pro-max: color-dark-mode — desaturated tonal variants, not inverted
+   Contrast: ink/bg ≈ 14:1 ✅  muted/bg ≈ 4.6:1 ✅
+   =========================== */
+[data-theme="dark"] {
+  --c-bg:         #0D1A17;
+  --c-ink:        #E4EDEA;
+  --c-muted:      #869E98;
+  --c-border:     #243530;
+  --c-white:      #162822;
+  --c-teal:       #3DB39F;
+  --c-teal-light: #142620;
+  --c-teal-dark:  #6DCFBC;
+  --sh-s: 0 1px 3px rgba(0,0,0,.4);
+  --sh-m: 0 4px 20px rgba(0,0,0,.5);
+}
+/* System setting fallback — no JS needed */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) {
+    --c-bg:         #0D1A17;
+    --c-ink:        #E4EDEA;
+    --c-muted:      #869E98;
+    --c-border:     #243530;
+    --c-white:      #162822;
+    --c-teal:       #3DB39F;
+    --c-teal-light: #142620;
+    --c-teal-dark:  #6DCFBC;
+    --sh-s: 0 1px 3px rgba(0,0,0,.4);
+    --sh-m: 0 4px 20px rgba(0,0,0,.5);
+  }
+}
+/* Hardcoded amber/warning overrides for dark */
+[data-theme="dark"] .affiliate-notice,
+@media (prefers-color-scheme: dark) { html:not([data-theme="light"]) .affiliate-notice }
+{ background: #261D0B; border-color: #7A5215; color: #D4A843; }
+[data-theme="dark"] .affiliate-notice a { color: #E6B455; }
+[data-theme="dark"] .callout--warning { background: #261D0B; border-color: #7A5215; }
+[data-theme="dark"] .callout--warning p { color: #D4A843; }
+[data-theme="dark"] .emergency-warning { background: #261D0B; border-color: #7A5215; color: #D4A843; }
+[data-theme="dark"] .rate-display__warning { background: #261D0B; color: #D4A843; }
+
+/* Dark mode toggle button — ui-ux-pro-max: touch-target-size ≥44px, aria-labels */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: var(--r-m);
+  color: var(--c-muted);
+  transition: color var(--ease), background var(--ease);
+  flex-shrink: 0;
+}
+.theme-toggle:hover { color: var(--c-ink); background: var(--c-teal-light); }
+.theme-toggle svg { pointer-events: none; }
+
+/* ===========================
+   PRINT — 旅程PDF出力
+   =========================== */
+@media print {
+  .site-nav, .site-footer, .theme-toggle, .nav-toggle,
+  .btn-copy, .btn-speak, .btn-fav, .tab-bar, .article-sidebar,
+  .affiliate-notice, .phrase-preview__cta, .nav-cta { display: none !important; }
+  body { background: #fff !important; color: #000 !important; font-size: 12pt; }
+  a { color: #000; text-decoration: none; }
+  h1 { font-size: 20pt; page-break-after: avoid; }
+  h2 { font-size: 14pt; page-break-after: avoid; }
+  .phrase-card { break-inside: avoid; border: 1px solid #ccc; padding: 8pt; margin: 4pt 0; }
+  .article-content p, .article-content li { font-size: 11pt; color: #333; }
+  .callout { border: 1px solid #999 !important; background: #f5f5f5 !important; }
+  .page-header, .article-header { padding: 0 0 1rem; border: none; }
+}

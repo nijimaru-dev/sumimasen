@@ -118,6 +118,35 @@ document.addEventListener('click', e => {
 
 applyFavState();
 
+/* ---- Dark mode toggle ---- */
+const THEME_KEY = 'sumimasen_theme';
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  document.querySelectorAll('.theme-toggle').forEach(btn => {
+    const isDark = theme === 'dark';
+    btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    const moon = btn.querySelector('.icon-moon');
+    const sun  = btn.querySelector('.icon-sun');
+    if (moon) moon.style.display = isDark ? 'none' : '';
+    if (sun)  sun.style.display  = isDark ? '' : 'none';
+  });
+}
+
+(function initTheme() {
+  const saved  = localStorage.getItem(THEME_KEY);
+  const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  applyTheme(saved || system);
+})();
+
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.theme-toggle');
+  if (!btn) return;
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  localStorage.setItem(THEME_KEY, next);
+  applyTheme(next);
+});
+
 /* ---- PWA service worker ---- */
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').catch(() => {});
