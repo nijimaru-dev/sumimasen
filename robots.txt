@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nijimaru-dev.github.io/sumimasen/sitemap.xml
+# TODO: Update Sitemap URL when custom domain is acquired
