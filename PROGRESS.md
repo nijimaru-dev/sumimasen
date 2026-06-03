@@ -1,9 +1,9 @@
 # PROGRESS
 
 Phase: 7
-Status: in_progress
-Last: OGP全記事追加・sitemap.xml・robots.txt・manifest SVGアイコン・監査報告書
-Next: JSON-LD残記事5本追加 → GA4プレースホルダー → commit & push
+Status: complete
+Last: JSON-LD全6記事完了・GA4プレースホルダー全20ページ追加・commit & push
+Next: Google Search Console登録（藤丸が手動）→ og-default.jpg作成（Canva 1200×630）→ Phase 8検討
 Blockers: -
 Updated: 2026-06-04
 
@@ -14,8 +14,8 @@ Updated: 2026-06-04
 - [x] robots.txt 作成
 - [x] OGP メタタグ — index.html・全6記事（og:url/image/site_name/twitter:card）
 - [x] JSON-LD — index.html（WebSite）・how-to-call-waiter（Article+BreadcrumbList）
-- [ ] JSON-LD — 残5記事（konbini・train・toilet・manners・food-guide）
-- [ ] Plausible / GA4 スクリプトプレースホルダー追加
+- [x] JSON-LD — 残5記事（konbini・train・toilet・manners・food-guide）
+- [x] Plausible / GA4 スクリプトプレースホルダー追加（全20ページ、コメントアウト済み）
 - [x] manifest.json SVGアイコン修正（PNG参照 → SVG）
 - [x] icons/icon-192.svg・icon-512.svg 作成
 - [x] assets/og-default.svg 作成（⚠️ og:imageはPNG必須 → Canvaで1200×630 PNG要作成）
