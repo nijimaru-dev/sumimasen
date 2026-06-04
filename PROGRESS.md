@@ -1,11 +1,26 @@
 # PROGRESS
 
-Phase: 7
-Status: complete
-Last: JSON-LD全6記事完了・GA4プレースホルダー全20ページ追加・commit & push
-Next: Google Search Console登録（藤丸が手動）→ og-default.jpg作成（Canva 1200×630）→ Phase 8検討
-Blockers: -
+Phase: 8 + 全体品質修正
+Status: in_progress
+Last: 【品質修正】ルート絶対パス崩壊を全面修正 — nav/footer/本文の内部リンク335件を深さ別相対パス化（全22ページ）＋manifest/sw/main.jsのPWA基盤を相対化（基準自動検出）＋sitemapにitinerary・法務3ページ追加。GitHub Pagesサブパス配信でnav全404・SW登録失敗だった土台バグを解消。
+Next: （次セッション）serena導入→ UI/アクセシビリティ深掘り（frontend-design→ui-ux-pro-max）を1スキルずつ。残: og-default.jpg(PNG・藤丸/Canva)、404.html深層パス時の相対リンク制約（既知・低優先）
+Blockers: og-default.jpg未作成（社会的シェア画像）/ Wise住所エラー（Phase 6収益化の前提）
 Updated: 2026-06-04
+
+## 全体品質修正セッション（2026-06-04）
+- [x] コードベース全体把握（21 HTMLページ+共通CSS/JS+PWA一式）
+- [x] **critical**: ルート絶対パス→相対パス（335リンク/22ファイル・深さ別 ./・../・../../）
+- [x] manifest.json start_url/icons 相対化
+- [x] sw.js PRECACHE 相対化・v2→v3・itinerary/法務ページ追加
+- [x] main.js SW登録を manifest-link 基準の base-path 非依存方式に
+- [x] robots.txt 確認（Disallowなし=E-E-A-Tページ公開済み・対応不要）
+- [x] sitemap.xml 網羅補完（itinerary + privacy/terms/affiliate-disclosure）
+- [x] JSON-LD </script> エスケープバグ検査 → 検出なし（手書きで安全）
+- [ ] UI/デザイン原則準拠の深掘り（青緑・66ch・Progressive Disclosure）
+- [ ] アクセシビリティAAA 監査（コントラスト比・キーボード・スクリーンリーダー）
+- [ ] code-modernization レビュー
+- [ ] webapp-testing/playwright（※「ブラウザで確認して」指示時のみ）
+- 注: serena未ロードのためnativeツール（Glob/Grep/Read）で実施
 
 ## Phase 6: スキップ（Wise住所エラー未解決）
 

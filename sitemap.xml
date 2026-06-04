@@ -21,7 +21,11 @@
   <url><loc>https://nijimaru-dev.github.io/sumimasen/tools/jr-pass-calculator/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://nijimaru-dev.github.io/sumimasen/tools/exchange-rate/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://nijimaru-dev.github.io/sumimasen/tools/emergency-contacts/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://nijimaru-dev.github.io/sumimasen/tools/itinerary/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
   <url><loc>https://nijimaru-dev.github.io/sumimasen/about/</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://nijimaru-dev.github.io/sumimasen/affiliate-disclosure/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://nijimaru-dev.github.io/sumimasen/privacy-policy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://nijimaru-dev.github.io/sumimasen/terms-of-use/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 
 </urlset>
