@@ -2,8 +2,8 @@
 
 Phase: 8 + 全体品質修正
 Status: in_progress
-Last: 【品質修正】ルート絶対パス崩壊を全面修正 — nav/footer/本文の内部リンク335件を深さ別相対パス化（全22ページ）＋manifest/sw/main.jsのPWA基盤を相対化（基準自動検出）＋sitemapにitinerary・法務3ページ追加。GitHub Pagesサブパス配信でnav全404・SW登録失敗だった土台バグを解消。
-Next: （次セッション）serena導入→ UI/アクセシビリティ深掘り（frontend-design→ui-ux-pro-max）を1スキルずつ。残: og-default.jpg(PNG・藤丸/Canva)、404.html深層パス時の相対リンク制約（既知・低優先）
+Last: 【UI/a11y深掘り＋英語監査】serena全体把握→frontend-design（背景の奥行き・ヒーローstagger演出・focus-visibleリング追加）→ui-ux-pro-max（タッチ44px@coarse・reduced-motion・jr-pass aria-live誤配置修正）→brand-voice（全6記事の英語監査：誤字/文法/AI臭/禁止ワードすべてゼロ＝書き換え不要を確認、英文中の生日本語にlang="ja"補完）。
+Next: og-default.jpg(PNG・藤丸/Canva)、404.html深層パス時の相対リンク制約（既知・低優先）、emoji→SVGアイコン化（確定設計変更のため要承認）
 Blockers: og-default.jpg未作成（社会的シェア画像）/ Wise住所エラー（Phase 6収益化の前提）
 Updated: 2026-06-04
 
@@ -16,11 +16,12 @@ Updated: 2026-06-04
 - [x] robots.txt 確認（Disallowなし=E-E-A-Tページ公開済み・対応不要）
 - [x] sitemap.xml 網羅補完（itinerary + privacy/terms/affiliate-disclosure）
 - [x] JSON-LD </script> エスケープバグ検査 → 検出なし（手書きで安全）
-- [ ] UI/デザイン原則準拠の深掘り（青緑・66ch・Progressive Disclosure）
-- [ ] アクセシビリティAAA 監査（コントラスト比・キーボード・スクリーンリーダー）
+- [x] UI/デザイン原則準拠の深掘り（frontend-design：背景ラジアル/ヒーローstagger/focus-visible — 確定カラー・タイポは不変更）
+- [x] アクセシビリティ監査（ui-ux-pro-max：focus-visible・reduced-motion・タッチ44px@coarse・jr-pass aria-live修正・lang="ja"整合）
+- [x] 全記事の英語品質監査（brand-voice：6記事 禁止ワード0/誤字0/文法エラー0/AI臭0 → 散文書き換え不要）
 - [ ] code-modernization レビュー
 - [ ] webapp-testing/playwright（※「ブラウザで確認して」指示時のみ）
-- 注: serena未ロードのためnativeツール（Glob/Grep/Read）で実施
+- 注: serena有効化済（typescript LSP検出・HTML中心のため把握はnativeツール併用）
 
 ## Phase 6: スキップ（Wise住所エラー未解決）
 

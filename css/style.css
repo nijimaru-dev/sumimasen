@@ -1465,6 +1465,107 @@ p { max-width: var(--measure); }
 .theme-toggle svg { pointer-events: none; }
 
 /* ===========================
+   MICRO-INTERACTIONS & POLISH
+   frontend-design: atmospheric depth, high-impact load reveal,
+   keyboard focus rings. All motion guarded by prefers-reduced-motion.
+   =========================== */
+
+/* Atmospheric background — teal light pools top-left, a warm torii
+   blush bottom-right. Replaces the flat fill with quiet editorial depth. */
+body {
+  background-image:
+    radial-gradient(55rem 38rem at 0% -8%, rgba(42,124,111,.06), transparent 60%),
+    radial-gradient(48rem 48rem at 100% 0%, rgba(192,57,43,.03), transparent 55%);
+  background-repeat: no-repeat;
+}
+[data-theme="dark"] body {
+  background-image:
+    radial-gradient(55rem 38rem at 0% -8%, rgba(61,179,159,.10), transparent 60%),
+    radial-gradient(48rem 48rem at 100% 0%, rgba(192,57,43,.06), transparent 55%);
+}
+
+/* Keyboard focus rings — visible for keyboard nav only, teal halo.
+   Mouse/touch users keep the clean hover states. */
+:focus-visible {
+  outline: 2px solid var(--c-teal);
+  outline-offset: 2px;
+}
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+.cat-card:focus-visible,
+.article-tile:focus-visible,
+.phrase-preview:focus-visible {
+  outline: 2px solid var(--c-teal);
+  outline-offset: 3px;
+  border-radius: var(--r-m);
+}
+/* On red surfaces a teal ring fades — switch to an ink ring for contrast */
+.btn-primary:focus-visible,
+.nav-cta:focus-visible,
+.favs-trigger:focus-visible,
+.phrase-btn.is-fav:focus-visible {
+  outline-color: var(--c-ink);
+  outline-offset: 3px;
+}
+
+/* Touch targets — on coarse (touch) pointers enforce the 44px minimum
+   without bloating the compact desktop layout. ui-ux-pro-max §2. */
+@media (pointer: coarse) {
+  .phrase-btn,
+  .tab-btn,
+  .nav-cta,
+  .breadcrumb a,
+  .section__link,
+  .favs-clear-btn {
+    min-height: 44px;
+  }
+  .phrase-btn,
+  .tab-btn { display: inline-flex; align-items: center; justify-content: center; }
+  .fav-item__btn,
+  .favs-panel__close {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .site-nav__links a { padding-block: var(--s-1); }
+}
+
+/* Hero entrance — staggered editorial rise (the one orchestrated moment) */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__eyebrow,
+  .hero__headline,
+  .hero__sub,
+  .hero__actions,
+  .hero__trust,
+  .hero__visual .hero__card {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: hero-rise .7s cubic-bezier(.22,.61,.36,1) forwards;
+  }
+  .hero__headline { animation-delay: .07s; }
+  .hero__sub      { animation-delay: .14s; }
+  .hero__actions  { animation-delay: .21s; }
+  .hero__trust    { animation-delay: .28s; }
+  .hero__visual .hero__card:nth-child(1) { animation-delay: .22s; }
+  .hero__visual .hero__card:nth-child(2) { animation-delay: .32s; }
+  .hero__visual .hero__card:nth-child(3) { animation-delay: .42s; }
+  .hero__visual .hero__card:nth-child(4) { animation-delay: .52s; }
+}
+@keyframes hero-rise {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Reduced-motion — strip transforms/animations for vestibular safety */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===========================
    PRINT — 旅程PDF出力
    =========================== */
 @media print {
