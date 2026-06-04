@@ -3,6 +3,7 @@
 Phase: 8 + 全体品質修正
 Status: in_progress
 Last: 【UI/a11y深掘り＋英語監査】serena全体把握→frontend-design（背景の奥行き・ヒーローstagger演出・focus-visibleリング追加）→ui-ux-pro-max（タッチ44px@coarse・reduced-motion・jr-pass aria-live誤配置修正）→brand-voice（全6記事の英語監査：誤字/文法/AI臭/禁止ワードすべてゼロ＝書き換え不要を確認、英文中の生日本語にlang="ja"補完）。
+Last2: 【ブラウザ実機確認】Playwrightで本番トップを確認→表示正常。favicon.ico 404を検出し全22ページに<link rel="icon" href=".../icons/icon-192.svg">を深さ別相対パスで追加。
 Next: og-default.jpg(PNG・藤丸/Canva)、404.html深層パス時の相対リンク制約（既知・低優先）、emoji→SVGアイコン化（確定設計変更のため要承認）
 Blockers: og-default.jpg未作成（社会的シェア画像）/ Wise住所エラー（Phase 6収益化の前提）
 Updated: 2026-06-04
