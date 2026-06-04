@@ -21,3 +21,7 @@ node_modules/
 
 # Serena MCP project metadata
 .serena/
+
+# Playwright MCP artifacts (browser screenshots / snapshots / logs)
+.playwright-mcp/
+sumimasen-top-viewport.png
