@@ -1,26 +1,32 @@
-const CACHE = 'sumimasen-v2';
+const CACHE = 'sumimasen-v3';
 
+/* Relative to the service worker's location (site root) so the app works
+   on a project sub-path (/sumimasen/) today and a root domain after migration. */
 const PRECACHE = [
-  '/',
-  '/phrases/',
-  '/articles/',
-  '/articles/how-to-call-waiter/',
-  '/articles/konbini/',
-  '/articles/train/',
-  '/articles/toilet/',
-  '/articles/manners/',
-  '/articles/food-guide/',
-  '/areas/',
-  '/areas/asakusa/',
-  '/areas/shibuya/',
-  '/areas/iruma/',
-  '/tools/jr-pass-calculator/',
-  '/tools/exchange-rate/',
-  '/tools/emergency-contacts/',
-  '/about/',
-  '/css/style.css',
-  '/js/main.js',
-  '/manifest.json'
+  './',
+  'phrases/',
+  'articles/',
+  'articles/how-to-call-waiter/',
+  'articles/konbini/',
+  'articles/train/',
+  'articles/toilet/',
+  'articles/manners/',
+  'articles/food-guide/',
+  'areas/',
+  'areas/asakusa/',
+  'areas/shibuya/',
+  'areas/iruma/',
+  'tools/jr-pass-calculator/',
+  'tools/exchange-rate/',
+  'tools/emergency-contacts/',
+  'tools/itinerary/',
+  'about/',
+  'privacy-policy/',
+  'terms-of-use/',
+  'affiliate-disclosure/',
+  'css/style.css',
+  'js/main.js',
+  'manifest.json'
 ];
 
 self.addEventListener('install', e => {

@@ -262,7 +262,9 @@ document.addEventListener('click', e => {
   applyTheme(next);
 });
 
-/* ---- PWA service worker ---- */
+/* ---- PWA service worker (root-relative — works on /sumimasen/ sub-path or a root domain) ---- */
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').catch(() => {});
+  const manifest = document.querySelector('link[rel="manifest"]');
+  const root = new URL('./', manifest ? manifest.href : location.href);
+  navigator.serviceWorker.register(new URL('sw.js', root).href, { scope: root.pathname }).catch(() => {});
 }

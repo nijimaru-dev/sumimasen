@@ -2,19 +2,19 @@
   "name": "Sumimasen",
   "short_name": "Sumimasen",
   "description": "The Japan guide that tells you what guidebooks are too scared to say.",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "theme_color": "#2A7C6F",
   "background_color": "#F7F9F8",
   "lang": "en",
   "icons": [
     {
-      "src": "/icons/icon-192.svg",
+      "src": "icons/icon-192.svg",
       "sizes": "any",
       "type": "image/svg+xml"
     },
     {
-      "src": "/icons/icon-512.svg",
+      "src": "icons/icon-512.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "maskable any"
