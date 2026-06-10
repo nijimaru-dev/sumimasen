@@ -19,6 +19,14 @@
   --c-red:         #C0392B;  /* torii red — CTA only */
   --c-red-dark:    #A93226;
 
+  /* Hero — light theme: dark-teal background, warm-white text.
+     Dark theme restores the previous look via token overrides below. */
+  --hero-bg:         #1A4A42;
+  --hero-text:       #F7F9F8;
+  --hero-text-soft:  rgba(247, 249, 248, .82);
+  --hero-eyebrow:    rgba(247, 249, 248, .72);
+  --hero-visual-bg:  rgba(255, 255, 255, .07);
+
   --f-heading:     'Playfair Display', Georgia, serif;
   --f-body:        'Plus Jakarta Sans', system-ui, sans-serif;
 
@@ -285,28 +293,33 @@ p { max-width: var(--measure); }
    HOME — HERO
    =========================== */
 .hero {
+  background: var(--hero-bg);
+  padding: var(--s-6) var(--s-4) var(--s-5);
+  transition: background var(--ease);
+}
+.hero__inner {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: var(--s-6) var(--s-4) var(--s-5);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--s-5);
   align-items: center;
 }
 .hero__text {}
-.hero__eyebrow { margin-bottom: var(--s-3); }
+.hero__eyebrow { margin-bottom: var(--s-3); color: var(--hero-eyebrow); }
 .hero__headline {
   font-size: clamp(2rem, 4.5vw, 3.25rem);
   max-width: 20ch;
   margin-bottom: var(--s-4);
-  color: var(--c-ink);
+  color: var(--hero-text);
 }
 .hero__sub {
   font-size: 1.0625rem;
-  color: var(--c-muted);
+  color: var(--hero-text-soft);
   max-width: 48ch;
   margin-bottom: var(--s-5);
 }
+.hero__sub strong { color: var(--hero-text); font-weight: 700; }
 .hero__actions {
   display: flex;
   gap: var(--s-3);
@@ -316,12 +329,12 @@ p { max-width: var(--measure); }
 .hero__trust {
   margin-top: var(--s-4);
   font-size: .8125rem;
-  color: var(--c-muted);
+  color: var(--hero-text-soft);
 }
 
-/* Visual side: teal accent block */
+/* Visual side: glass panel over the teal hero */
 .hero__visual {
-  background: var(--c-teal-light);
+  background: var(--hero-visual-bg);
   border-radius: var(--r-xl);
   padding: var(--s-5);
   display: flex;
@@ -343,7 +356,7 @@ p { max-width: var(--measure); }
 .hero__card-value { font-weight: 700; font-size: .9375rem; color: var(--c-ink); margin-top: 2px; }
 
 @media (max-width: 768px) {
-  .hero { grid-template-columns: 1fr; }
+  .hero__inner { grid-template-columns: 1fr; }
   .hero__visual { display: none; }
 }
 
@@ -1421,6 +1434,12 @@ p { max-width: var(--measure); }
   --c-teal-dark:  #6DCFBC;
   --sh-s: 0 1px 3px rgba(0,0,0,.4);
   --sh-m: 0 4px 20px rgba(0,0,0,.5);
+  /* Hero: keep the previous dark-mode look (no teal band) */
+  --hero-bg:        transparent;
+  --hero-text:      var(--c-ink);
+  --hero-text-soft: var(--c-muted);
+  --hero-eyebrow:   var(--c-teal);
+  --hero-visual-bg: var(--c-teal-light);
 }
 /* System setting fallback — no JS needed */
 @media (prefers-color-scheme: dark) {
@@ -1435,6 +1454,12 @@ p { max-width: var(--measure); }
     --c-teal-dark:  #6DCFBC;
     --sh-s: 0 1px 3px rgba(0,0,0,.4);
     --sh-m: 0 4px 20px rgba(0,0,0,.5);
+    /* Hero: keep the previous dark-mode look (no teal band) */
+    --hero-bg:        transparent;
+    --hero-text:      var(--c-ink);
+    --hero-text-soft: var(--c-muted);
+    --hero-eyebrow:   var(--c-teal);
+    --hero-visual-bg: var(--c-teal-light);
   }
 }
 /* Hardcoded amber/warning overrides for dark */
