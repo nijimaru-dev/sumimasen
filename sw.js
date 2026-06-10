@@ -1,4 +1,4 @@
-const CACHE = 'sumimasen-v3';
+const CACHE = 'sumimasen-v4';
 
 /* Relative to the service worker's location (site root) so the app works
    on a project sub-path (/sumimasen/) today and a root domain after migration. */

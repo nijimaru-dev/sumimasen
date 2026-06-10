@@ -776,6 +776,28 @@ p { max-width: var(--measure); }
 }
 .favs-clear-btn:hover { color: var(--c-red); }
 
+/* Saved spots (areas) — reuses the favourites drawer shell */
+.store-card__actions {
+  display: flex;
+  margin-top: var(--s-1);
+}
+.store-card__actions .phrase-btn {
+  flex: 0 1 auto;
+  padding: var(--s-2) var(--s-4);
+}
+.spot-item__name {
+  font-weight: 600;
+  font-size: .9375rem;
+  color: var(--c-ink);
+  flex: 1;
+}
+.fav-item__btn--map {
+  width: auto;
+  padding: 0 var(--s-3);
+  font-size: .75rem;
+  font-weight: 600;
+}
+
 /* ===========================
    AREA / STORE PAGE
    =========================== */
@@ -1596,7 +1618,8 @@ button:focus-visible,
 @media print {
   .site-nav, .site-footer, .theme-toggle, .nav-toggle,
   .btn-copy, .btn-speak, .btn-fav, .tab-bar, .article-sidebar,
-  .affiliate-notice, .phrase-preview__cta, .nav-cta { display: none !important; }
+  .affiliate-notice, .phrase-preview__cta, .nav-cta,
+  .store-card__actions, .favs-trigger, .favs-panel { display: none !important; }
   body { background: #fff !important; color: #000 !important; font-size: 12pt; }
   a { color: #000; text-decoration: none; }
   h1 { font-size: 20pt; page-break-after: avoid; }

@@ -233,6 +233,153 @@ if (favPanel) {
 
 buildFavPanel();
 
+/* ---- Saved spots (areas) ----
+   Stored as {id, name, area, map} objects keyed by fixed data-spot IDs —
+   never DOM text — so browser translation can't corrupt saved data, and
+   spots saved on one area page render on any other. */
+const SPOT_KEY = 'sumimasen_spots';
+
+function getSpots() {
+  try { return JSON.parse(localStorage.getItem(SPOT_KEY)) || []; }
+  catch { return []; }
+}
+
+function saveSpots(spots) {
+  localStorage.setItem(SPOT_KEY, JSON.stringify(spots));
+}
+
+function applySpotState() {
+  const spots = getSpots();
+  document.querySelectorAll('.btn-fav-spot[data-spot]').forEach(btn => {
+    const saved = spots.some(s => s.id === btn.dataset.spot);
+    btn.classList.toggle('is-fav', saved);
+    btn.setAttribute('aria-pressed', String(saved));
+  });
+}
+
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.btn-fav-spot');
+  if (!btn) return;
+
+  const spots = getSpots();
+  const idx   = spots.findIndex(s => s.id === btn.dataset.spot);
+
+  if (idx === -1) {
+    spots.push({
+      id:   btn.dataset.spot,
+      name: btn.dataset.name,
+      area: btn.dataset.area,
+      map:  btn.dataset.map,
+    });
+  } else {
+    spots.splice(idx, 1);
+  }
+
+  saveSpots(spots);
+  applySpotState();
+  buildSpotsPanel();
+});
+
+applySpotState();
+
+/* ---- Saved spots panel ---- */
+const spotsTrigger = document.getElementById('spots-trigger');
+const spotsPanel   = document.getElementById('spots-panel');
+
+function buildSpotsPanel() {
+  if (!spotsPanel) return;
+  const spots   = getSpots();
+  const list    = spotsPanel.querySelector('.favs-panel__list');
+  const empty   = spotsPanel.querySelector('.favs-panel__empty');
+  const counter = document.querySelectorAll('.spots-trigger__count');
+
+  counter.forEach(el => { el.textContent = spots.length; });
+  if (spotsTrigger) spotsTrigger.hidden = spots.length === 0;
+
+  if (!list) return;
+  list.innerHTML = '';
+
+  if (spots.length === 0) {
+    if (empty) empty.hidden = false;
+    return;
+  }
+  if (empty) empty.hidden = true;
+
+  spots.forEach(spot => {
+    const item = document.createElement('div');
+    item.className = 'fav-item';
+
+    const nameDiv = document.createElement('div');
+    nameDiv.className = 'spot-item__name';
+    nameDiv.textContent = spot.name;
+    const areaSpan = document.createElement('span');
+    areaSpan.className = 'fav-item__en';
+    areaSpan.textContent = spot.area;
+    nameDiv.appendChild(areaSpan);
+
+    const acts = document.createElement('div');
+    acts.className = 'fav-item__actions';
+
+    const mapLink = document.createElement('a');
+    mapLink.className = 'fav-item__btn fav-item__btn--map';
+    mapLink.href = spot.map;
+    mapLink.target = '_blank';
+    mapLink.rel = 'noopener';
+    mapLink.setAttribute('aria-label', 'Open ' + spot.name + ' in Google Maps');
+    mapLink.textContent = 'Map ↗';
+    acts.appendChild(mapLink);
+
+    const rmBtn = document.createElement('button');
+    rmBtn.className = 'fav-item__btn fav-item__btn--remove';
+    rmBtn.setAttribute('aria-label', 'Remove ' + spot.name);
+    rmBtn.dataset.remove = spot.id;
+    rmBtn.textContent = '✕';
+    acts.appendChild(rmBtn);
+
+    item.appendChild(nameDiv);
+    item.appendChild(acts);
+    list.appendChild(item);
+  });
+}
+
+if (spotsTrigger) {
+  spotsTrigger.addEventListener('click', () => {
+    buildSpotsPanel();
+    if (spotsPanel) spotsPanel.hidden = false;
+  });
+}
+
+if (spotsPanel) {
+  spotsPanel.addEventListener('click', e => {
+    if (e.target.closest('.favs-panel__scrim') || e.target.closest('.favs-panel__close')) {
+      spotsPanel.hidden = true;
+      return;
+    }
+    const rmBtn = e.target.closest('[data-remove]');
+    if (rmBtn) {
+      saveSpots(getSpots().filter(s => s.id !== rmBtn.dataset.remove));
+      applySpotState();
+      buildSpotsPanel();
+      return;
+    }
+    if (e.target.closest('.spots-clear-btn')) {
+      saveSpots([]);
+      applySpotState();
+      buildSpotsPanel();
+      spotsPanel.hidden = true;
+    }
+  });
+}
+
+buildSpotsPanel();
+
+/* ---- Escape closes either drawer ---- */
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if (favPanel && !favPanel.hidden) favPanel.hidden = true;
+  if (spotsPanel && !spotsPanel.hidden) spotsPanel.hidden = true;
+});
+
 /* ---- Dark mode toggle ---- */
 const THEME_KEY = 'sumimasen_theme';
 

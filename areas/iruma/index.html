@@ -77,6 +77,11 @@
             <h2 class="store-card__name">Mitsui Outlet Park Iruma</h2>
             <p class="store-card__type">Premium outlet mall · 340+ stores · All budgets</p>
             <p class="store-card__tip">💡 Japan's largest outlet mall — Nike, Adidas, Coach, Ralph Lauren, and many Japanese brands at 30–70% off retail. Staff at major brand stores speak English. Tax refund counter on-site (passport required). Bring a big bag. Open 10 am–8 pm; food court until 9 pm.</p>
+            <div class="store-card__actions">
+              <button class="phrase-btn btn-fav-spot" aria-pressed="false" aria-label="Save Mitsui Outlet Park Iruma" data-spot="st-iruma-01" data-name="Mitsui Outlet Park Iruma" data-area="Iruma" data-map="https://www.google.com/maps?q=Mitsui+Outlet+Park+Iruma+Saitama">
+                <span aria-hidden="true">♥</span> Save
+              </button>
+            </div>
           </div>
         </article>
 
@@ -94,6 +99,11 @@
             <h2 class="store-card__name">Station area ramen &amp; soba</h2>
             <p class="store-card__type">Local dining near Iruma-shi Station · ¥700–1,200</p>
             <p class="store-card__tip">💡 The cluster of small restaurants around Iruma-shi Station is where locals eat — not the outlet food court. Ramen shops in this area have photo menus; point at what looks good. Prices are 20–30% less than Tokyo for the same quality. Open from 11 am, many close by 8 pm.</p>
+            <div class="store-card__actions">
+              <button class="phrase-btn btn-fav-spot" aria-pressed="false" aria-label="Save the Iruma-shi Station dining area" data-spot="st-iruma-02" data-name="Station area ramen &amp; soba" data-area="Iruma" data-map="https://www.google.com/maps?q=Iruma+shi+Station+Saitama">
+                <span aria-hidden="true">♥</span> Save
+              </button>
+            </div>
           </div>
         </article>
 
@@ -111,6 +121,11 @@
             <h2 class="store-card__name">Sayama Tea Fields (狭山茶)</h2>
             <p class="store-card__type">Green tea farms &amp; shops · Spring harvest (April–May) is peak</p>
             <p class="store-card__tip">💡 Iruma is the center of Sayama tea production — one of Japan's three great green teas. Local tea shops sell loose-leaf tea and matcha sweets. Less known than Uji (Kyoto) tea but equally serious quality. Some farms offer English-guided experiences in spring.</p>
+            <div class="store-card__actions">
+              <button class="phrase-btn btn-fav-spot" aria-pressed="false" aria-label="Save Sayama Tea Fields" data-spot="st-iruma-03" data-name="Sayama Tea Fields (狭山茶)" data-area="Iruma" data-map="https://www.google.com/maps?q=Sayama+Tea+Iruma+Saitama">
+                <span aria-hidden="true">♥</span> Save
+              </button>
+            </div>
           </div>
         </article>
 
@@ -118,6 +133,27 @@
 
       <div style="margin-top:var(--s-4);padding:var(--s-3);background:var(--c-bg);border-radius:var(--r-m);font-size:.8125rem;color:var(--c-muted);">
         Hours, menus, and reviews are live from Google Maps — click any map to open the full listing. <a href="../../terms-of-use/" style="color:var(--c-teal);">Disclaimer →</a>
+      </div>
+    </div>
+
+    <!-- Saved spots trigger (shows when ≥1 saved) -->
+    <button class="favs-trigger" id="spots-trigger" hidden aria-haspopup="dialog">
+      ♥ Saved spots <span class="favs-trigger__count spots-trigger__count" aria-live="polite">0</span>
+    </button>
+
+    <!-- Saved spots drawer -->
+    <div class="favs-panel" id="spots-panel" hidden role="dialog" aria-modal="true" aria-label="Saved spots">
+      <div class="favs-panel__scrim" aria-hidden="true"></div>
+      <div class="favs-panel__drawer">
+        <div class="favs-panel__header">
+          <h2>Saved Spots</h2>
+          <button class="favs-panel__close" aria-label="Close saved spots">✕</button>
+        </div>
+        <p class="favs-panel__empty">No spots saved yet. Tap ♥ Save on any spot to keep it here.</p>
+        <div class="favs-panel__list" role="list"></div>
+        <div class="favs-panel__footer">
+          <button class="favs-clear-btn spots-clear-btn">Clear all saved spots</button>
+        </div>
       </div>
     </div>
   </main>

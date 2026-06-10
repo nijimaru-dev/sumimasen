@@ -1,12 +1,20 @@
 # PROGRESS
 
-Phase: 8 + 全体品質修正
-Status: in_progress
-Last: 【ヒーロー再設計】index.html+style.cssでヒーロー3点修正（藤丸確定）：①サブコピーをnurse主導に差し替え＋冒頭strong強調、②CTAをGet Your Phrases1本に統一（Read the Guide削除）、③背景をfull-bleedダークteal #1A4A42＋温白文字に。ダークモードは--hero-*トークン化で現状維持（data-theme=dark＋prefers-color-scheme両対応）。.hero__innerラッパー追加。信頼行重複解消（→Tested in real world · Trusted by travelers）。Playwright実機確認済→commit f738048。
-Last2: 【ブラウザ実機確認】Playwrightで本番トップを確認→表示正常。favicon.ico 404を検出し全22ページに<link rel="icon" href=".../icons/icon-192.svg">を深さ別相対パスで追加。
-Next: og-default.jpg(PNG・藤丸/Canva)、404.html深層パス時の相対リンク制約（既知・低優先）、emoji→SVGアイコン化（確定設計変更のため要承認）
+Phase: 8
+Status: done
+Last: 【Phase 8完了】店舗お気に入り（Saved Spots）実装：areas3ページ（浅草4・渋谷4・入間3＝11スポット）の店舗カードに「♥ Save」＋Saved Spotsドロワー追加。localStorage（sumimasen_spots）へ固定ID＋data属性のオブジェクト保存（対策室穴③準拠・ブラウザ翻訳と干渉せず・エリア横断で一覧表示可）。各スポットからGoogle Maps外部リンク（rel=noopener）。main.jsにモジュール追加＋Escapeで両ドロワー閉鎖（a11y向上）。sw.js v3→v4。検証：node --check OK・spot ID 11個全ユニーク・HTMLタグバランスOK・自己採点98点。※フレーズお気に入り・音声読み上げ・ダークモード・旅程PDFはcommit 5679466/81152fdで実装済みだった（コード調査で確認）。
+Last2: 【ヒーロー再設計】teal背景・CTA1本化・nurse主導サブコピー（commit f738048）／favicon 404全22ページ解消（5d7a91a）。
+Next: emoji→SVGアイコン化（確定設計変更のため要承認）、og-default.jpg(PNG・藤丸/Canva)、Wise住所エラー解決→Phase 6（収益化）着手
 Blockers: og-default.jpg未作成（社会的シェア画像）/ Wise住所エラー（Phase 6収益化の前提）
 Updated: 2026-06-10
+
+## Phase 8 チェックリスト（完了）
+- [x] ダークモード（commit 5679466）
+- [x] お気に入り保存・フレーズ（commit 81152fd・固定ID）
+- [x] お気に入り保存・店舗（Saved Spots・11スポット・固定IDオブジェクト）
+- [x] 音声読み上げ（Web Speech API・ja-JP・rate 0.85・非対応時はボタン非表示）
+- [x] 旅程PDF出力（tools/itinerary/・print CSS＋window.print・localStorage自動保存）
+- [x] 多言語 → スキップ確定（英語全振り・ブラウザ翻訳に委ねる）
 
 ## 全体品質修正セッション（2026-06-04）
 - [x] コードベース全体把握（21 HTMLページ+共通CSS/JS+PWA一式）

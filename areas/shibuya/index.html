@@ -77,6 +77,11 @@
             <h2 class="store-card__name">Shibuya Scramble Crossing</h2>
             <p class="store-card__type">The crossing · Best viewed from Mag's Park or Starbucks above</p>
             <p class="store-card__tip">💡 3,000 people cross simultaneously when the lights change. Best view: Shibuya Sky (top of Scramble Square, ¥2,000 entry) or the free window seat at Starbucks in the Tsutaya building. Rush hour (8–9 am, 6–7 pm) is the most intense.</p>
+            <div class="store-card__actions">
+              <button class="phrase-btn btn-fav-spot" aria-pressed="false" aria-label="Save Shibuya Scramble Crossing" data-spot="st-shibuya-01" data-name="Shibuya Scramble Crossing" data-area="Shibuya" data-map="https://www.google.com/maps?q=Shibuya+Scramble+Crossing+Tokyo">
+                <span aria-hidden="true">♥</span> Save
+              </button>
+            </div>
           </div>
         </article>
 
@@ -94,6 +99,11 @@
             <h2 class="store-card__name">Shibuya Hikarie (渋谷ヒカリエ)</h2>
             <p class="store-card__type">Department store with restaurant floors · All budgets</p>
             <p class="store-card__tip">💡 Connected directly to Shibuya Station. The ShinQs food floors (B2–B3) have high-quality takeaway food and sweets. Restaurant floors (6–7F) have picture menus and some English menus. Good option when the streets feel overwhelming — air-conditioned, calm, quality food.</p>
+            <div class="store-card__actions">
+              <button class="phrase-btn btn-fav-spot" aria-pressed="false" aria-label="Save Shibuya Hikarie" data-spot="st-shibuya-02" data-name="Shibuya Hikarie (渋谷ヒカリエ)" data-area="Shibuya" data-map="https://www.google.com/maps?q=Shibuya+Hikarie+Restaurant+Floor+Tokyo">
+                <span aria-hidden="true">♥</span> Save
+              </button>
+            </div>
           </div>
         </article>
 
@@ -111,6 +121,11 @@
             <h2 class="store-card__name">Ichiran Ramen (一蘭)</h2>
             <p class="store-card__type">Ramen · ¥980–1,500 · Solo dining designed</p>
             <p class="store-card__tip">💡 The solo-booth ramen chain where you order via a form (English available) and eat in your own curtained booth. Zero social interaction required — ideal for jet-lagged arrivals or introverts. Multiple Shibuya locations; ticket machine at entry.</p>
+            <div class="store-card__actions">
+              <button class="phrase-btn btn-fav-spot" aria-pressed="false" aria-label="Save Ichiran Ramen" data-spot="st-shibuya-03" data-name="Ichiran Ramen (一蘭)" data-area="Shibuya" data-map="https://www.google.com/maps?q=Ichiran+Ramen+Shibuya+Tokyo">
+                <span aria-hidden="true">♥</span> Save
+              </button>
+            </div>
           </div>
         </article>
 
@@ -128,6 +143,11 @@
             <h2 class="store-card__name">Takeshita Street, Harajuku (竹下通り)</h2>
             <p class="store-card__type">Street food &amp; fashion · 10 min walk from Shibuya · ¥300–800 snacks</p>
             <p class="store-card__tip">💡 The pedestrian street famous for cosplay fashion and rainbow-colored crepes. Vendors sell cotton candy, crepes, and bubble tea. All street food vendors are used to tourists. Best on weekday mornings before the crowds arrive. Harajuku Station (one stop on the Yamanote Line) is right at the entrance.</p>
+            <div class="store-card__actions">
+              <button class="phrase-btn btn-fav-spot" aria-pressed="false" aria-label="Save Takeshita Street" data-spot="st-shibuya-04" data-name="Takeshita Street, Harajuku (竹下通り)" data-area="Shibuya" data-map="https://www.google.com/maps?q=Harajuku+Takeshita+Street+Tokyo">
+                <span aria-hidden="true">♥</span> Save
+              </button>
+            </div>
           </div>
         </article>
 
@@ -135,6 +155,27 @@
 
       <div style="margin-top:var(--s-4);padding:var(--s-3);background:var(--c-bg);border-radius:var(--r-m);font-size:.8125rem;color:var(--c-muted);">
         Hours, menus, and reviews are live from Google Maps — click any map to open the full listing. <a href="../../terms-of-use/" style="color:var(--c-teal);">Disclaimer →</a>
+      </div>
+    </div>
+
+    <!-- Saved spots trigger (shows when ≥1 saved) -->
+    <button class="favs-trigger" id="spots-trigger" hidden aria-haspopup="dialog">
+      ♥ Saved spots <span class="favs-trigger__count spots-trigger__count" aria-live="polite">0</span>
+    </button>
+
+    <!-- Saved spots drawer -->
+    <div class="favs-panel" id="spots-panel" hidden role="dialog" aria-modal="true" aria-label="Saved spots">
+      <div class="favs-panel__scrim" aria-hidden="true"></div>
+      <div class="favs-panel__drawer">
+        <div class="favs-panel__header">
+          <h2>Saved Spots</h2>
+          <button class="favs-panel__close" aria-label="Close saved spots">✕</button>
+        </div>
+        <p class="favs-panel__empty">No spots saved yet. Tap ♥ Save on any spot to keep it here.</p>
+        <div class="favs-panel__list" role="list"></div>
+        <div class="favs-panel__footer">
+          <button class="favs-clear-btn spots-clear-btn">Clear all saved spots</button>
+        </div>
       </div>
     </div>
   </main>
