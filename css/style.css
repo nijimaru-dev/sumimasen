@@ -1615,6 +1615,61 @@ button:focus-visible,
 /* ===========================
    PRINT — 旅程PDF出力
    =========================== */
+
+/* ===========================
+   ARTICLE TRUST PARTS (2026-11)
+   Quick answer / Nurse's note / Sources / Related guides / Last checked
+   =========================== */
+.article-meta__checked { color: var(--c-muted); }
+.quick-answer {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-top: 4px solid var(--c-teal);
+  border-radius: var(--r-m);
+  padding: var(--s-3) var(--s-4);
+  margin: 0 0 var(--s-4);
+  box-shadow: var(--sh-s);
+}
+.quick-answer__label,
+.nurse-note__label {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--c-teal);
+  margin: 0 0 var(--s-2);
+}
+.quick-answer ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: var(--s-1); }
+.quick-answer li { font-weight: 600; color: var(--c-ink); }
+.nurse-note {
+  background: var(--c-teal-light);
+  border-left: 4px solid var(--c-teal);
+  border-radius: 0 var(--r-m) var(--r-m) 0;
+  padding: var(--s-3) var(--s-4);
+  margin: var(--s-5) 0 var(--s-3);
+}
+.nurse-note__label::before { content: "+ "; font-weight: 800; }
+.nurse-note p { color: var(--c-teal-dark); font-size: .95rem; margin: 0 0 var(--s-2); }
+.nurse-note p.nurse-note__fine { font-size: .75rem; color: var(--c-muted); margin: 0; }
+.sources h2,
+.related-guides h2 {
+  font-family: var(--f-heading);
+  font-size: 1.25rem;
+  margin: 0 0 var(--s-2);
+}
+.sources__reviewed { font-size: .8125rem; color: var(--c-muted); margin: 0 0 var(--s-2); }
+.sources ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: var(--s-1); }
+.sources li { font-size: .875rem; }
+.sources a { color: var(--c-teal); overflow-wrap: anywhere; }
+.sources a:hover { text-decoration: underline; }
+.related-guides__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--s-3);
+}
+.related-guides .article-tile { padding: var(--s-3); }
+.related-guides .article-tile__title { font-size: 1rem; }
+
 @media print {
   .site-nav, .site-footer, .theme-toggle, .nav-toggle,
   .btn-copy, .btn-speak, .btn-fav, .tab-bar, .article-sidebar,
@@ -1628,4 +1683,6 @@ button:focus-visible,
   .article-content p, .article-content li { font-size: 11pt; color: #333; }
   .callout { border: 1px solid #999 !important; background: #f5f5f5 !important; }
   .page-header, .article-header { padding: 0 0 1rem; border: none; }
+  .related-guides { display: none !important; }
+  .quick-answer, .nurse-note { border: 1px solid #999 !important; background: #f5f5f5 !important; box-shadow: none !important; }
 }

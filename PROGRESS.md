@@ -1,12 +1,13 @@
 # PROGRESS
 
-Phase: 8
-Status: done
-Last: 【Phase 8完了】店舗お気に入り（Saved Spots）実装：areas3ページ（浅草4・渋谷4・入間3＝11スポット）の店舗カードに「♥ Save」＋Saved Spotsドロワー追加。localStorage（sumimasen_spots）へ固定ID＋data属性のオブジェクト保存（対策室穴③準拠・ブラウザ翻訳と干渉せず・エリア横断で一覧表示可）。各スポットからGoogle Maps外部リンク（rel=noopener）。main.jsにモジュール追加＋Escapeで両ドロワー閉鎖（a11y向上）。sw.js v3→v4。検証：node --check OK・spot ID 11個全ユニーク・HTMLタグバランスOK・自己採点98点。※フレーズお気に入り・音声読み上げ・ダークモード・旅程PDFはcommit 5679466/81152fdで実装済みだった（コード調査で確認）。
+Phase: 8（＋Phase外の追加作業：記事の信頼パーツ）
+Status: done（pushは藤丸のPCで git am）
+Last: 【追加作業完了・2026-11-26・Phase番号は変更せず】競合sumimasenguide.comの型を抽出し全6記事に信頼パーツ追加：Quick answer／Nurse's note（119・非医療助言の注記つき）／公式Sources＋Last reviewed／Related guides（記事＋ツールへ送客）／meta行にLast checked・JSON-LD dateModified・sitemap lastmod更新。事実修正：train（JR Pass「日本購入30%高」は旧情報→公式サイト最安・Nozomiは特別券要・Suica価格/デポジット表記・Welcome Suica追記）、konbini（Lawson/FamilyMartのATMをJapan Postと誤記→修正）。CSS追加（ライト/ダーク/印刷）、SW v4→v5。※破損なし検証済（タグバランス・内部リンク・禁止ワード）。
+Last0: 【Phase 8完了】店舗お気に入り（Saved Spots）実装：areas3ページ（浅草4・渋谷4・入間3＝11スポット）の店舗カードに「♥ Save」＋Saved Spotsドロワー追加。localStorage（sumimasen_spots）へ固定ID＋data属性のオブジェクト保存（対策室穴③準拠・ブラウザ翻訳と干渉せず・エリア横断で一覧表示可）。各スポットからGoogle Maps外部リンク（rel=noopener）。main.jsにモジュール追加＋Escapeで両ドロワー閉鎖（a11y向上）。sw.js v3→v4。検証：node --check OK・spot ID 11個全ユニーク・HTMLタグバランスOK・自己採点98点。※フレーズお気に入り・音声読み上げ・ダークモード・旅程PDFはcommit 5679466/81152fdで実装済みだった（コード調査で確認）。
 Last2: 【ヒーロー再設計】teal背景・CTA1本化・nurse主導サブコピー（commit f738048）／favicon 404全22ページ解消（5d7a91a）。
-Next: emoji→SVGアイコン化（確定設計変更のため要承認）、og-default.jpg(PNG・藤丸/Canva)、Wise住所エラー解決→Phase 6（収益化）着手
+Next: 独自ドメイン取得→Search Console登録→GA4有効化（Phase 1扱い）／Travelpayouts登録画面で日本居住のPayPal受取（最低$50）可否確認→可ならWise不要でPhase 6着手／break-even表の個別運賃は未再検証、emoji→SVGアイコン化（確定設計変更のため要承認）、og-default.jpg(PNG・藤丸/Canva)、Wise住所エラー解決→Phase 6（収益化）着手
 Blockers: og-default.jpg未作成（社会的シェア画像）/ Wise住所エラー（Phase 6収益化の前提）
-Updated: 2026-06-10
+Updated: 2026-11-26
 
 ## Phase 8 チェックリスト（完了）
 - [x] ダークモード（commit 5679466）
