@@ -1,4 +1,4 @@
-const CACHE = 'sumimasen-v5';
+const CACHE = 'sumimasen-v6';
 
 /* Relative to the service worker's location (site root) so the app works
    on a project sub-path (/sumimasen/) today and a root domain after migration. */
@@ -25,6 +25,8 @@ const PRECACHE = [
   'terms-of-use/',
   'affiliate-disclosure/',
   'css/style.css',
+  'css/home.css',
+  'assets/photos/shibuya.jpg',
   'js/main.js',
   'manifest.json'
 ];
