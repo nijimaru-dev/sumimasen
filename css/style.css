@@ -1624,33 +1624,27 @@ button:focus-visible,
 .quick-answer {
   background: var(--c-white);
   border: 1px solid var(--c-border);
-  border-top: 4px solid var(--c-teal);
   border-radius: var(--r-m);
   padding: var(--s-3) var(--s-4);
   margin: 0 0 var(--s-4);
-  box-shadow: var(--sh-s);
 }
 .quick-answer__label,
 .nurse-note__label {
-  font-size: .7rem;
+  font-size: .9rem;
   font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--c-teal);
+  color: var(--c-ink);
   margin: 0 0 var(--s-2);
 }
 .quick-answer ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: var(--s-1); }
-.quick-answer li { font-weight: 600; color: var(--c-ink); }
+.quick-answer li { color: var(--c-ink); }
 .nurse-note {
   background: var(--c-teal-light);
-  border-left: 4px solid var(--c-teal);
-  border-radius: 0 var(--r-m) var(--r-m) 0;
+  border-radius: var(--r-m);
   padding: var(--s-3) var(--s-4);
   margin: var(--s-5) 0 var(--s-3);
 }
-.nurse-note__label::before { content: "+ "; font-weight: 800; }
-.nurse-note p { color: var(--c-teal-dark); font-size: .95rem; margin: 0 0 var(--s-2); }
-.nurse-note p.nurse-note__fine { font-size: .75rem; color: var(--c-muted); margin: 0; }
+.nurse-note p { color: var(--c-ink); font-size: .95rem; margin: 0 0 var(--s-2); }
+.nurse-note p.nurse-note__fine { font-size: .8125rem; color: var(--c-muted); margin: 0; }
 .sources h2,
 .related-guides h2 {
   font-family: var(--f-heading);
